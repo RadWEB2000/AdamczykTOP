@@ -1,5 +1,33 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/assets/*":["./src/assets/*"],
+      "@/img/*":["./src/assets/images/*"],
+      "@/docs/*":["./src/assets/documents/*"],
+      "@/ico/*":["./src/assets/icons/*"],
+      "@/movies/*":["./src/assets/videos/*"],
+      "@/components/*":["./src/components/*"],
+      "@/common/*":["./src/components/common/*"],
+      "@/shared/*":["./src/components/shared/*"],
+      "@/views/*":["./src/components/views/*"],
+      "@/context/*":["./src/context/*"],
+      "@/data/*":["./src/data/*"],
+      "@/lib/*":["./src/lib/*"],
+      "@/configs/*":["./src/lib/configs/*"],
+      "@/funcs/*":["./src/lib/functions/*"],
+      "@/hooks/*":["./src/lib/hooks/*"],
+      "@/pages/*":["./src/pages/*"],
+      "@/css/*":["./src/styles/*"],
+      "@/ts/*":["./src/types/*"]
+    }
+  }
 }

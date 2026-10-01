@@ -1,0 +1,5 @@
+:root {
+    --font-brand:var(--font-rubik);
+    --font-base:var(--font-manrope);
+    --font-data:var(--font-fira-code);
+}

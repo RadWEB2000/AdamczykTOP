@@ -1,0 +1,26 @@
+---
+import "@/css/global.css";
+import { Font } from "astro:assets";
+
+interface Props {
+  language?: string;
+}
+---
+
+<!doctype html>
+<html lang="pl-PL">
+  <head>
+    <Font cssVariable="--font-rubik" />
+    <Font cssVariable="--font-manrope" />
+    <Font cssVariable="--font-fira-code" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
