@@ -1,2 +1,2 @@
 # AdamczykTOP
-** Pozycjonowanie stron internetowych **
+**Pozycjonowanie stron internetowych**
