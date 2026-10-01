@@ -1,0 +1,8 @@
+@property --font-size-base {
+
+}
+
+
+:root {
+ --fsz-page-title:clamp(1rem,calc(.5rem + 3cqi),3.25rem);
+}

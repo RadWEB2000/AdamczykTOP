@@ -1,45 +1,64 @@
 :root {
-    --color-brand-100:#ff9a80;
-    --color-brand-200:#ff5733;
-    --color-brand-300:#d93a17;
-    --color-accent-100:#8ffcff;
-    --color-accent-200:#4debf2;
-    --color-accent-300:#16dbe7;
-    --color-accent-400:#08b8c7;
-    --color-accent-500:#067985;
-    --color-base-50:#F5F7FC;
-    --color-base-100:#E9EDF5;
-    --color-base-200:#CFD6E4;
-    --color-base-300:#B4BBC8;
-    --color-base-400:#9097A3;
-    --color-base-500:#686D76;
-    --color-base-600:#4A4D54;
-    --color-base-700:#34363B;
-    --color-base-800:#242629;
-    --color-base-900:#181818;
-    --color-base-950:#111111;
-    --color-base-1000:#070709;
-    --color-support-100: #D6C2FF;
-    --color-support-200: #BE9BFF;
-    --color-support-300: #A577FF;
-    --color-support-400: #8A5CFF;
-    --color-support-500: #7B2FFF;
-    --color-support-600: #6426E3;
-    --color-support-700: #5A18CF;
-    --color-support-800: #4A0EBF;
-    --color-support-900: #2A145A;
-    --color-support-950: #160A2E;
-    --color-info-100:#9d9dff;
-    --color-info-200:#380a90;
-    --color-error-100:#fc5e05;
-    --color-error-200:#6f1727;
-    --color-warning-100:#ffcc03;
-    --color-warning-200:#443100;
-    --color-success-100:#a1e887;
-    --color-success-200:#85b023;
-}
+  /* BRAND — pomarańczowy */
+  --color-brand-50:  #FFF4EC;
+  --color-brand-100: #FFE5D3;
+  --color-brand-200: #FFC7A6;
+  --color-brand-300: #FFA16E;
+  --color-brand-400: #FF7B36;
+  --color-brand-500: #FF5A0A;
+  --color-brand-600: #DB4500;
+  --color-brand-700: #AD3500;
+  --color-brand-800: #802A08;
+  --color-brand-900: #54200C;
+  --color-brand-950: #2C1005;
 
+  /* SUPPORT — granatowy */
+  --color-support-50:  #F0F6FC;
+  --color-support-100: #DCE9F5;
+  --color-support-200: #B9D2E9;
+  --color-support-300: #8AB1D5;
+  --color-support-400: #578AB7;
+  --color-support-500: #35658F;
+  --color-support-600: #244D72;
+  --color-support-700: #193C5D;
+  --color-support-800: #102D4A;
+  --color-support-900: #0A1F35;
+  --color-support-950: #051222;
 
-body {
-    
+  /* ACCENT — kobaltowy */
+  --color-accent-50:  #EFF3FF;
+  --color-accent-100: #DFE7FF;
+  --color-accent-200: #C2CFFF;
+  --color-accent-300: #98ACFF;
+  --color-accent-400: #6984FA;
+  --color-accent-500: #4263F2;
+  --color-accent-600: #2448E8;
+  --color-accent-700: #1C36BE;
+  --color-accent-800: #1B2D94;
+  --color-accent-900: #19276B;
+  --color-accent-950: #10173D;
+
+  /* BASE — chłodne szarości */
+  --color-base-50:   #F5F6F8;
+  --color-base-100:  #E9EBEF;
+  --color-base-200:  #D3D7DF;
+  --color-base-300:  #B3BAC6;
+  --color-base-400:  #919BAA;
+  --color-base-500:  #727D8E;
+  --color-base-600:  #566171;
+  --color-base-700:  #3D4654;
+  --color-base-800:  #282F3A;
+  --color-base-900:  #1B2029;
+  --color-base-950:  #111318;
+  --color-base-1000: #080A0E;
+
+  /* STATES */
+  --color-info-100:#9d9dff;
+  --color-info-200:#380a90;
+  --color-error-100:#fc5e05;
+  --color-error-200:#6f1727;
+  --color-warning-100:#ffcc03;
+  --color-warning-200:#443100;
+  --color-success-100:#a1e887;
+  --color-success-200:#85b023;
 }

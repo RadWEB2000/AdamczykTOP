@@ -1,5 +1,7 @@
 @import "./_colors.css";
 @import "./_fonts.css";
+@import "./_functions.css";
+@import "./_typography.css";
 
 * {
     box-sizing: border-box;
@@ -8,12 +10,27 @@
 }
 
 body {
-    background-color: color-mix(in srgb, var(--color-support-950) 5%, var(--color-base-1000));
-    color:var(--color-base-100);
+    background-color: var(--color-base-50);
+    color:var(--color-base-1000);
     font-family: var(--font-base);
     font-size: 1.6rem;
 }
 
 html {
     font-size: 62.5%;
+}
+
+img {
+    filter:brightness(95%) contrast(115%);
+    pointer-events: none;
+    user-select: none;
+}
+
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-brand);
+    line-height: 1;
+    text-wrap: balance;
 }

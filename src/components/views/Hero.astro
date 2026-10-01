@@ -31,73 +31,28 @@ import me from "@/img/me/suit-04.webp";
 
 <style>
   header {
-    background-color: var(--color-purple-800);
-    background-image: linear-gradient(
-      to bottom right,
-      var(--color-accent-300),
-      var(--color-support-500)
-    );
-    color: var(--color-base-950);
-    display: grid;
-    height: auto;
-    overflow-x: hidden;
-    grid-template-columns: 2fr 1.5fr;
+    background: var(--color-accent-600);
+    color: var(--color-base-50);
+    padding: 2rem 2rem 0rem;
   }
 
   section {
-    align-items: start;
-    display: flex;
-    justify-content: center;
-    padding: 0 0 0 5rem;
-    flex-flow: column;
-    /* background: orange; */
-    min-height: 95vh;
-  }
-
-  hgroup {
-    display: flex;
-    flex-flow: column;
-    gap: 1.5rem;
-  }
-
-  h1,
-  h2 {
-    font-family: var(--font-brand);
-    line-height: 0.87;
-    text-wrap: balance;
   }
 
   h1 {
-    color: var(--color-purple-300);
-    font-size: 9rem;
-  }
-
-  h2 {
-    font-size: 3rem;
-    color: var(--color-base-200);
-  }
-  p {
-    color: var(--color-base-300);
-    margin-top: 2rem;
-    font-size: 2.5rem;
-    tex-wrap: pretty;
-    max-width: 75ch;
-  }
-
-  h1 {
-    order: 2;
+    font-size: --fluid-font(2.73rem, calc(2rem + 5cqi), 12rem);
+    text-transform: uppercase;
   }
 
   figure {
+    background: purple;
     position: relative;
   }
 
   img {
-    position: absolute;
-    height: 100%;
+    background: violet;
     width: 100%;
+    height: fit-content;
     object-fit: contain;
-    transform-origin: bottom;
-    object-position: top;
   }
 </style>

@@ -1,0 +1,4 @@
+@function --fluid-font(--min-size <length>, --preferred-size <length>, --max-size <length>){
+    result: clamp(var(--min-size),var(--preferred-size),var(--max-size));
+}
+
