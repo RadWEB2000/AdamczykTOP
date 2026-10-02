@@ -1,56 +1,30 @@
 :root {
-  /* BRAND — pomarańczowy */
-  --color-brand-50:  #FFF4EC;
-  --color-brand-100: #FFE5D3;
-  --color-brand-200: #FFC7A6;
-  --color-brand-300: #FFA16E;
-  --color-brand-400: #FF7B36;
-  --color-brand-500: #FF5A0A;
-  --color-brand-600: #DB4500;
-  --color-brand-700: #AD3500;
-  --color-brand-800: #802A08;
-  --color-brand-900: #54200C;
-  --color-brand-950: #2C1005;
+  /* BRAND — BLUE */
+  --color-brand-100: #ccd0fe;
+  --color-brand-200: #8893ff;
+  --color-brand-300: #4455ff;
+  --color-brand-400: #2c3fff;
+  --color-brand-500: #1329fe;
+  --color-brand-600: #080b43;
+  --color-brand-700: #060624;
 
-  /* SUPPORT — granatowy */
-  --color-support-50:  #F0F6FC;
-  --color-support-100: #DCE9F5;
-  --color-support-200: #B9D2E9;
-  --color-support-300: #8AB1D5;
-  --color-support-400: #578AB7;
-  --color-support-500: #35658F;
-  --color-support-600: #244D72;
-  --color-support-700: #193C5D;
-  --color-support-800: #102D4A;
-  --color-support-900: #0A1F35;
-  --color-support-950: #051222;
+  /* ACCENT — LIME */
+  --color-accent: #e8fd9e;
 
-  /* ACCENT — kobaltowy */
-  --color-accent-50:  #EFF3FF;
-  --color-accent-100: #DFE7FF;
-  --color-accent-200: #C2CFFF;
-  --color-accent-300: #98ACFF;
-  --color-accent-400: #6984FA;
-  --color-accent-500: #4263F2;
-  --color-accent-600: #2448E8;
-  --color-accent-700: #1C36BE;
-  --color-accent-800: #1B2D94;
-  --color-accent-900: #19276B;
-  --color-accent-950: #10173D;
+  /* WARM — CORAL */
+  --color-warm-100: #f36d52;
+  --color-warm-200: #e95549;
 
-  /* BASE — chłodne szarości */
-  --color-base-50:   #F5F6F8;
-  --color-base-100:  #E9EBEF;
-  --color-base-200:  #D3D7DF;
-  --color-base-300:  #B3BAC6;
-  --color-base-400:  #919BAA;
-  --color-base-500:  #727D8E;
-  --color-base-600:  #566171;
-  --color-base-700:  #3D4654;
-  --color-base-800:  #282F3A;
-  --color-base-900:  #1B2029;
-  --color-base-950:  #111318;
-  --color-base-1000: #080A0E;
+  /* BASE */
+  --color-base-100:#f6f6ff;
+  --color-base-200:#aeafb7;
+  --color-base-300:#67676e;
+  --color-base-400:#43444a;
+  --color-base-500:#1f2026;
+  --color-base-600:#1b1b21;
+  --color-base-700:#16151b;
+  --color-base-800:#0d0b0f;
+  --color-base-900:#040004;
 
   /* STATES */
   --color-info-100:#9d9dff;
