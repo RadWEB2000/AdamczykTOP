@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import me from "@/img/me/suit-04.webp";
+import PrimaryButton from "@/common/buttons/PrimaryButton.astro";
 ---
 
 <header>
@@ -14,45 +15,74 @@ import me from "@/img/me/suit-04.webp";
       kompetencje techniczne. Od audytu po wdrożenie - bez ciągłego przerzucania
       zadań między SEO, devem i copywriterem.
     </p>
+    <div>
+      <PrimaryButton label="Moja oferta" uri="/oferta" />
+      <PrimaryButton label="Moje realizacje" uri="/case-studies" />
+      <div></div>
+    </div>
+
+    <style>
+      header {
+        background-color: var(--color-brand-200);
+        color: var(--color-base-50);
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        padding: 2rem 0 0 0;
+        position: relative;
+      }
+
+      header > * {
+        grid-column: 1/-1;
+        grid-row: 1;
+      }
+
+      section {
+        display: flex;
+        flex-flow: column;
+        align-items: start;
+        justify-content: center;
+        padding: 0 2rem;
+        min-height: 92vh;
+        z-index: 1;
+      }
+
+      div {
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+        flex-flow: row wrap;
+        gap: 10px;
+        margin-top: 1.4rem;
+      }
+
+      hgroup {
+        display: flex;
+        flex-flow: column;
+      }
+
+      h1 {
+        font-size: --fluid-font(2.73rem, calc(2rem + 5cqi), 12rem);
+        color: var(--color-base-1300);
+        text-transform: uppercase;
+        order: 2;
+      }
+
+      h2 {
+        color: var(--color-base-1100);
+
+        font-size: --fluid-font(1.73rem, calc(2rem + 5cqi), 4rem);
+        text-transform: uppercase;
+      }
+
+      p {
+        color: var(--color-base-1000);
+        font-weight: 700;
+        /* font-size: --fluid-font(1.13rem, calc(1.65rem + 3cqi), 2.6rem); */
+        font-size: --fluid-font(1.13rem, calc(1.25rem + 1cqi), 2.16rem);
+        text-wrap: pretty;
+        max-width: 75ch;
+      }
+    </style>
   </section>
-  <figure>
-    <Image
-      alt="Radosław Adamczyk - Specjalista SEO"
-      src={me}
-      height={me.height}
-      format="webp"
-      loading="eager"
-      priority
-      quality={85}
-      width={me.width}
-    />
-  </figure>
 </header>
-
-<style>
-  header {
-    background: var(--color-accent-600);
-    color: var(--color-base-50);
-    padding: 2rem 2rem 0rem;
-  }
-
-  section {
-  }
-
-  h1 {
-    font-size: --fluid-font(2.73rem, calc(2rem + 5cqi), 12rem);
-    text-transform: uppercase;
-  }
-
-  figure {
-    background: purple;
-    position: relative;
-  }
-
-  img {
-    background: violet;
-    width: 100%;
-    height: fit-content;
-    object-fit: contain;
-  }
-</style>

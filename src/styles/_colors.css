@@ -1,30 +1,32 @@
 :root {
-  /* BRAND — BLUE */
-  --color-brand-100: #ccd0fe;
-  --color-brand-200: #8893ff;
-  --color-brand-300: #4455ff;
-  --color-brand-400: #2c3fff;
-  --color-brand-500: #1329fe;
-  --color-brand-600: #080b43;
-  --color-brand-700: #060624;
-
-  /* ACCENT — LIME */
-  --color-accent: #e8fd9e;
-
-  /* WARM — CORAL */
-  --color-warm-100: #f36d52;
-  --color-warm-200: #e95549;
-
   /* BASE */
-  --color-base-100:#f6f6ff;
-  --color-base-200:#aeafb7;
-  --color-base-300:#67676e;
-  --color-base-400:#43444a;
-  --color-base-500:#1f2026;
-  --color-base-600:#1b1b21;
-  --color-base-700:#16151b;
-  --color-base-800:#0d0b0f;
-  --color-base-900:#040004;
+  --color-base-100:  #ffffff;
+  --color-base-200:  #fafbe7;
+  --color-base-300:  #e9eae4;
+  --color-base-400:  #d7d8d2;
+  --color-base-500:  #c7c8c2;
+  --color-base-600:  #a7a9a2;
+  --color-base-700:  #7f817b;
+  --color-base-800:  #666862;
+  --color-base-900:  #555752;
+  --color-base-1000: #3f413d;
+  --color-base-1100: #2b2d2a;
+  --color-base-1200: #191a18;
+  --color-base-1300: #0b0b0b;
+  /* BRAND */
+  --color-brand-100:#F6FFC2;
+  --color-brand-200:#d9ff00;
+  --color-brand-300:#455200;
+  /* SUPPORT */
+  --color-support-100: #f1ebff;
+  --color-support-200: #e0d3ff;
+  --color-support-300: #cdb8ff;
+  --color-support-400: #5f3dc4;
+  --color-support-500: #4c2a85;
+  /* ACCENT */
+  --color-accent-100: #f1f4d8;
+  --color-accent-200: #a3aa68;
+  --color-accent-300: #59612f;
 
   /* STATES */
   --color-info-100:#9d9dff;

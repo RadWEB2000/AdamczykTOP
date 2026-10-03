@@ -10,8 +10,8 @@
 }
 
 body {
-    background-color: var(--color-base-50);
-    color:var(--color-base-1000);
+    background-color: var(--color-base-1300);
+    color:var(--color-base-100);
     font-family: var(--font-base);
     font-size: 1.6rem;
 }
@@ -33,4 +33,11 @@ h3 {
     font-family: var(--font-brand);
     line-height: 1;
     text-wrap: balance;
+}
+
+a {
+    all:unset;
+    color:inherit;
+    cursor: pointer;
+    text-decoration: none;
 }
