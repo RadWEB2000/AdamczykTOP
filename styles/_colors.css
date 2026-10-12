@@ -1,0 +1,28 @@
+@theme inline {
+  /* SUPPORT — ciepłe beże */
+  --color-support-100: #f5f1e8; /* Jasne tło sekcji wyróżnionej, np. o mnie */
+  --color-support-200: #e9e1d0; /* Karty i pola na jasnych beżowych powierzchniach */
+  --color-support-300: #d0c5ab; /* Tekst pomocniczy i ikony na ciemnym tle */
+  --color-support-400: #b5a789; /* Subtelniejsze etykiety na ciemnym tle */
+  --color-support-500: #958568; /* Dekoracyjne linie, numeracja i mniej ważne ikony */
+  --color-support-600: #77694f; /* Obramowania i separatory na jasnym tle */
+  --color-support-700: #584d3b; /* Tekst pomocniczy na jasnym beżowym tle */
+  --color-support-800: #393226; /* Ciepłe tło wyróżnionej karty w ciemnej sekcji */
+  --color-support-900: #221e17; /* Alternatywne ciemne tło, np. sekcja kontaktu */
+
+  /* BRAND — żółty akcent marki */
+  --color-brand-100: #fff3cf; /* Delikatne tło wyróżnienia na jasnej stronie */
+  --color-brand-200: #ffe69a; /* Tło etykiet i komunikatów wyróżnionych */
+  --color-brand-300: #ffd15c; /* Hover głównego przycisku */
+  --color-brand-400: #fcc438; /* Logo, główne CTA, aktywne ikony i akcenty */
+  --color-brand-500: #e5aa16; /* Stan wciśnięcia CTA i mocniejsze obramowania */
+
+  /* BASE — tła, tekst i neutralne elementy */
+  --color-base-100: #f4f4ed; /* Główny tekst na ciemnym tle i tło jasnych sekcji */
+  --color-base-200: #e8e6dd; /* Karty i pola formularzy w jasnych sekcjach */
+  --color-base-300: #cecbc0; /* Subtelne obramowania na jasnym tle */
+  --color-base-400: #a09b8e; /* Tekst pomocniczy na ciemnym tle */
+  --color-base-500: #686357; /* Tekst pomocniczy na jasnym tle */
+  --color-base-600: #1c1b16; /* Karty, menu i pola formularzy na ciemnym tle */
+  --color-base-700: #11100d; /* Główne ciemne tło; tekst na jasnym i żółtym tle */
+}

@@ -1,69 +1,270 @@
-import Image from "next/image";
+import { About, CaseStudies, Hero, Manifest, Services } from "@/views/home-view";
 
-export default function Home() {
+export default function HomePage(){
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div>
+      <Hero/>
+      <main
+        className="py-20"
+      >
+        <Manifest/>
+        <CaseStudies/>
+        <Services/>
+        <About/>
       </main>
+      <ul>
+        <li>001</li>
+        <li>002</li>
+        <li>003</li>
+        <li>004</li>
+        <li>005</li>
+        <li>006</li>
+        <li>007</li>
+        <li>008</li>
+        <li>009</li>
+        <li>010</li>
+        <li>011</li>
+        <li>012</li>
+        <li>013</li>
+        <li>014</li>
+        <li>015</li>
+        <li>016</li>
+        <li>017</li>
+        <li>018</li>
+        <li>019</li>
+        <li>020</li>
+        <li>021</li>
+        <li>022</li>
+        <li>023</li>
+        <li>024</li>
+        <li>025</li>
+        <li>026</li>
+        <li>027</li>
+        <li>028</li>
+        <li>029</li>
+        <li>030</li>
+        <li>031</li>
+        <li>032</li>
+        <li>033</li>
+        <li>034</li>
+        <li>035</li>
+        <li>036</li>
+        <li>037</li>
+        <li>038</li>
+        <li>039</li>
+        <li>040</li>
+        <li>041</li>
+        <li>042</li>
+        <li>043</li>
+        <li>044</li>
+        <li>045</li>
+        <li>046</li>
+        <li>047</li>
+        <li>048</li>
+        <li>049</li>
+        <li>050</li>
+        <li>051</li>
+        <li>052</li>
+        <li>053</li>
+        <li>054</li>
+        <li>055</li>
+        <li>056</li>
+        <li>057</li>
+        <li>058</li>
+        <li>059</li>
+        <li>060</li>
+        <li>061</li>
+        <li>062</li>
+        <li>063</li>
+        <li>064</li>
+        <li>065</li>
+        <li>066</li>
+        <li>067</li>
+        <li>068</li>
+        <li>069</li>
+        <li>070</li>
+        <li>071</li>
+        <li>072</li>
+        <li>073</li>
+        <li>074</li>
+        <li>075</li>
+        <li>076</li>
+        <li>077</li>
+        <li>078</li>
+        <li>079</li>
+        <li>080</li>
+        <li>081</li>
+        <li>082</li>
+        <li>083</li>
+        <li>084</li>
+        <li>085</li>
+        <li>086</li>
+        <li>087</li>
+        <li>088</li>
+        <li>089</li>
+        <li>090</li>
+        <li>091</li>
+        <li>092</li>
+        <li>093</li>
+        <li>094</li>
+        <li>095</li>
+        <li>096</li>
+        <li>097</li>
+        <li>098</li>
+        <li>099</li>
+        <li>100</li>
+        <li>101</li>
+        <li>102</li>
+        <li>103</li>
+        <li>104</li>
+        <li>105</li>
+        <li>106</li>
+        <li>107</li>
+        <li>108</li>
+        <li>109</li>
+        <li>110</li>
+        <li>111</li>
+        <li>112</li>
+        <li>113</li>
+        <li>114</li>
+        <li>115</li>
+        <li>116</li>
+        <li>117</li>
+        <li>118</li>
+        <li>119</li>
+        <li>120</li>
+        <li>121</li>
+        <li>122</li>
+        <li>123</li>
+        <li>124</li>
+        <li>125</li>
+        <li>126</li>
+        <li>127</li>
+        <li>128</li>
+        <li>129</li>
+        <li>130</li>
+        <li>131</li>
+        <li>132</li>
+        <li>133</li>
+        <li>134</li>
+        <li>135</li>
+        <li>136</li>
+        <li>137</li>
+        <li>138</li>
+        <li>139</li>
+        <li>140</li>
+        <li>141</li>
+        <li>142</li>
+        <li>143</li>
+        <li>144</li>
+        <li>145</li>
+        <li>146</li>
+        <li>147</li>
+        <li>148</li>
+        <li>149</li>
+        <li>150</li>
+        <li>151</li>
+        <li>152</li>
+        <li>153</li>
+        <li>154</li>
+        <li>155</li>
+        <li>156</li>
+        <li>157</li>
+        <li>158</li>
+        <li>159</li>
+        <li>160</li>
+        <li>161</li>
+        <li>162</li>
+        <li>163</li>
+        <li>164</li>
+        <li>165</li>
+        <li>166</li>
+        <li>167</li>
+        <li>168</li>
+        <li>169</li>
+        <li>170</li>
+        <li>171</li>
+        <li>172</li>
+        <li>173</li>
+        <li>174</li>
+        <li>175</li>
+        <li>176</li>
+        <li>177</li>
+        <li>178</li>
+        <li>179</li>
+        <li>180</li>
+        <li>181</li>
+        <li>182</li>
+        <li>183</li>
+        <li>184</li>
+        <li>185</li>
+        <li>186</li>
+        <li>187</li>
+        <li>188</li>
+        <li>189</li>
+        <li>190</li>
+        <li>191</li>
+        <li>192</li>
+        <li>193</li>
+        <li>194</li>
+        <li>195</li>
+        <li>196</li>
+        <li>197</li>
+        <li>198</li>
+        <li>199</li>
+        <li>200</li>
+        <li>201</li>
+        <li>202</li>
+        <li>203</li>
+        <li>204</li>
+        <li>205</li>
+        <li>206</li>
+        <li>207</li>
+        <li>208</li>
+        <li>209</li>
+        <li>210</li>
+        <li>211</li>
+        <li>212</li>
+        <li>213</li>
+        <li>214</li>
+        <li>215</li>
+        <li>216</li>
+        <li>217</li>
+        <li>218</li>
+        <li>219</li>
+        <li>220</li>
+        <li>221</li>
+        <li>222</li>
+        <li>223</li>
+        <li>224</li>
+        <li>225</li>
+        <li>226</li>
+        <li>227</li>
+        <li>228</li>
+        <li>229</li>
+        <li>230</li>
+        <li>231</li>
+        <li>232</li>
+        <li>233</li>
+        <li>234</li>
+        <li>235</li>
+        <li>236</li>
+        <li>237</li>
+        <li>238</li>
+        <li>239</li>
+        <li>240</li>
+        <li>241</li>
+        <li>242</li>
+        <li>243</li>
+        <li>244</li>
+        <li>245</li>
+        <li>246</li>
+        <li>247</li>
+        <li>248</li>
+        <li>249</li>
+        <li>250</li>
+        <li>251</li>
+      </ul>
     </div>
-  );
+  )
 }

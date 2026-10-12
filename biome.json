@@ -12,17 +12,26 @@
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "indentWidth": 2
+    "indentWidth": 2,
   },
   "css": {
     "parser": {
-      "tailwindDirectives": true
+      "tailwindDirectives": true,
+      "cssModules":true
     }
   },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "a11y":{
+        "useAltText":"warn",
+        "noSvgWithoutTitle":"info",
+        "useHtmlLang":"info"
+      },
+      "performance":{
+        "noImgElement":"info"
+      }
     },
     "domains": {
       "next": "recommended",
@@ -32,7 +41,10 @@
   "assist": {
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "on",
+        "useSortedProperties":"on",
+        "useSortedAttributes":"on",
+        "noDuplicateClasses":"on"
       }
     }
   }

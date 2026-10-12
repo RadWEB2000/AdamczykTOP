@@ -12,6 +12,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "importHelpers": true,
+    "allowArbitraryExtensions":true,
+    "mapRoot":"https://adamczyk.top",
+    "sourceMap": true,
+    "verbatimModuleSyntax":true,
     "incremental": true,
     "plugins": [
       {
@@ -19,7 +24,30 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/app/*":["./app/*"],
+      "@/assets/*":["./assets/*"],
+      "@/docs/*":["./assets/documents/*"],
+      "@/fonts/*":["./assets/fonts/*"],
+      "@/img/*":["./assets/images/*"],
+      "@/movies/*":["./assets/movies/*"],
+      "@/icons/*":["./assets/icons/*"],
+      "@/components/*":["./components/*"],
+      "@/common/*":["./components/common/*"],
+      "@/buttons/*":["./components/common/buttons/*"],
+      "@/cards/*":["./components/common/cards/*"],
+      "@/utils/*":["./components/common/utils/*"],
+      "@/shared/*":["./components/shared/*"],
+      "@/views/*":["./components/views/*"],
+      "@/context/*":["./context/*"],
+      "@/data/*":["./data/*"],
+      "@/lib/*":["./lib/*"],
+      "@/configs/*":["./lib/configs/*"],
+      "@/funcs/*":["./lib/functions/*"],
+      "@/hooks/*":["./lib/hooks/*"],
+      "@/providers/*":["./providers/*"],
+      "@/css/*":["./styles/*"],
+      "@/ts/*":["./types/*"]
     }
   },
   "include": [

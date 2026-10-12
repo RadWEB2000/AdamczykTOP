@@ -1,0 +1,45 @@
+@theme {
+  /* --- MICRO DEVICES --- */
+  --container-2xs: 320px;
+  --container-xs: 360px;
+  --container-xs2: 400px;
+  --container-xs3: 440px;
+  /* --- SMALL PHONES --- */
+  --container-sm1: 480px;
+  --container-sm2: 520px;
+  --container-sm: 560px;
+  --container-sm3: 600px;
+  --container-sm4: 640px;
+  /* --- TABLET RANGE --- */
+  --container-md1: 680px;
+  --container-md2: 720px;
+  --container-md: 768px;
+  --container-md3: 820px;
+  --container-md4: 880px;
+  --container-md5: 920px;
+  /* --- SMALL LAPTOPS --- */
+  --container-lg1: 960px;
+  --container-lg2: 1000px;
+  --container-lg: 1024px;
+  --container-lg3: 1100px;
+  --container-lg4: 1150px;
+  --container-lg5: 1200px;
+  /* --- DESKTOP --- */
+  --container-xl1: 1280px;
+  --container-xl2: 1366px;
+  --container-xl: 1440px;
+  --container-xl3: 1536px;
+  --container-xl4: 1600px;
+  --container-xl5: 1680px;
+  /* --- LARGE DESKTOP --- */
+  --container-2xl1: 1720px;
+  --container-2xl2: 1800px;
+  --container-2xl: 1920px;
+  --container-2xl3: 2000px;
+  --container-2xl4: 2100px;
+  --container-2xl5: 2460px;
+  /* --- ULTRAWIDE / 4K --- */
+  --container-3xl: 2560px;
+  --container-4xl: 3200px;
+  --container-5xl: 3840px;
+}
