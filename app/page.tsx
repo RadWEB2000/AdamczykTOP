@@ -1,4 +1,4 @@
-import { About, CaseStudies, Hero, Manifest, Services } from "@/views/home-view";
+import { About, Blog, CaseStudies, Hero, Manifest, Services, Testimonials } from "@/views/home-view";
 
 export default function HomePage(){
   return (
@@ -11,6 +11,8 @@ export default function HomePage(){
         <CaseStudies/>
         <Services/>
         <About/>
+        <Testimonials/>
+        <Blog/>
       </main>
       <ul>
         <li>001</li>

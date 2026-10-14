@@ -1,0 +1,1 @@
+export {default as Poland} from "@/icons/flags/Poland"

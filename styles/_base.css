@@ -38,10 +38,22 @@
 
 }
 
-body {
-  background-attachment: fixed;
-  /* background-color: var(--color-grayscale-2400); */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 100%;
+  background:var(--color-support-900);
 }
+
+::-webkit-scrollbar-thumb {
+  background:var(--color-support-700);
+  width: 80%;
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:var(--color-support-300);
+}
+
 
 .img-better {
   @apply brightness-95 contrast-115 pointer-events-none select-none;
@@ -52,4 +64,23 @@ body {
 }
 .section-width {
   @apply w-[min(1536px,95%)] 2xl5:w-[min(1800px,95%)];
+}
+
+
+.testimonial-card {
+   background:
+    radial-gradient(
+      circle at 70% 85%,
+      rgb(from var(--color-support-200) r g b / 28%) 0%,
+      rgb(from var(--color-support-200) r g b / 12%) 22%,
+      rgb(from var(--color-support-200) r g b / 4%) 38%,
+      transparent 62%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgb(from var(--color-base-300) r g b / 4%) 0%,
+      rgb(from var(--color-base-300) r g b / 2%) 18%,
+      transparent 45%
+    ),
+    var(--color-base-600);
 }

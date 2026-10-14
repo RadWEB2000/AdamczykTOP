@@ -33,15 +33,19 @@ const hero:Hero = {
 export default function Hero(){
     return (
         <header
-            className="bg-[color-mix(in_srgb,var(--color-support-100),var(--color-base-100))] text-base-700 relative z-0 overflow-clip"
+            className="bg-[#070504] text-base-700 relative z-0 overflow-clip"
         >
             <Image
                 className="absolute size-full object-cover -z-1 scale-100 origin-bottom"
+                loading="eager"
+                quality={95}
+                // priority
+                preload
                 {...hero.image}
             />
 
             <section
-                className="min-h-[97vh] z-1 text-white pt-10 bg-orange-800/174 flex flex-col items-start justify-end pb-[7vh]  mx-auto px-4 @container/wrapper hero-width"
+                className="min-h-[97vh] z-1 text-white pt-10 flex flex-col items-start justify-end pb-[7vh]  mx-auto px-4 @container/wrapper hero-width"
             >
                 <hgroup
                     className="flex flex-col *:leading-none"
