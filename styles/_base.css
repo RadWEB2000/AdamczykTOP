@@ -52,6 +52,7 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background:var(--color-support-300);
+  cursor: pointer;
 }
 
 
