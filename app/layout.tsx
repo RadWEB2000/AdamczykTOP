@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/css/global.css";
 import fonts from "@/assets/fonts";
+import { CallToAction, Footer } from "@/shared/footer";
 
 export const metadata: Metadata = {
   title: "AdamczykTOP - Profesjonalne pozycjonowanie stron internetowych",
@@ -13,7 +14,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="pl-PL"
       className={`${fonts} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+          {children}
+          <CallToAction/>
+          <Footer/>
+      </body>
     </html>
   );
 }

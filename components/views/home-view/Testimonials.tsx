@@ -9,8 +9,9 @@ export default function Testimonials(){
             <section
                 className="section-width mx-auto text-center"
             >
-                <h2>Opinie i rekomendacje</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque sequi esse recusandae officia doloribus, dolorum ea possimus temporibus repellat aperiam ipsam minus commodi voluptatibus voluptate, mollitia eaque reiciendis eveniet earum.</p>
+                <h2
+                    className="order-2 text-5xl-plus uppercase font-bold @xl2/wrapper:text-7xl-plus @xl3/wrapper:text-9xl @2xl2/wrapper:text-10xl"
+                >Opinie i rekomendacje</h2>
             </section>
             <div
                 className="overflow-x-clip mt-10 bg-blue-300/0 z-0 relative"
