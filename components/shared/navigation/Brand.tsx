@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Brand(){
     return (
-        <Link className="inline-flex items-center" href="#" >
+        <Link className="inline-flex items-center" href="/" >
             <Image
                 alt="Logo - Radosław Adamczyk"
                 className="size-13 invert @md/wrapper:size-14  @2xl2/wrapper:size-14.5 @2xl5/wrapper:size-17"

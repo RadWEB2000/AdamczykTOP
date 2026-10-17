@@ -21,7 +21,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
           <Navigation/>
+          <div className="min-h-screen">
           {children}
+          </div>
           <CallToAction/>
           <Footer/>
       </body>
