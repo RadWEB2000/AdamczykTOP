@@ -1,0 +1,63 @@
+---
+interface Props {
+  menu: Array<{
+    label: string;
+    uri: string;
+    dropdown?: Array<{
+      label: string;
+      uri: string;
+    }>;
+  }>;
+}
+
+const { menu } = Astro.props;
+---
+
+<menu class="wrapper">
+  {
+    menu.map(({ label, uri, dropdown }) => {
+      if (dropdown) {
+        return (
+          <div class="item__wrapper">
+            <div>
+              <a class="menu_item" href={uri}>
+                {label}
+              </a>
+              <button type="button">X</button>
+            </div>
+            <div class="dropdown">
+              <div class="dropdown__inner">
+                {dropdown.map(({ label, uri }) => {
+                  return (
+                    <a class="subitem" href={uri}>
+                      {label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div class="item__wrapper">
+            <a class="item" href={uri}>
+              {label}
+            </a>
+          </div>
+        );
+      }
+    })
+  }
+</menu>
+
+<style>
+  .wrapper,
+  .dropdown__inner {
+    display: flex;
+    flex-flow: column;
+  }
+  .wrapper {
+    padding: 2rem;
+  }
+</style>

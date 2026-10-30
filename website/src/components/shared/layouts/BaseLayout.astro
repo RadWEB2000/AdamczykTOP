@@ -1,0 +1,45 @@
+---
+import { Font } from "astro:assets";
+import "../../../styles/global.css";
+import Navigation from "../navigation/Navigation.astro";
+
+type Props = {
+  meta: {
+    title: string;
+    description: string;
+    robots?: string;
+  };
+  og?: {
+    title?: string;
+    description?: string;
+  };
+};
+
+const {
+  meta: { description, robots = "index follow", title },
+  og,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+---
+
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="canonical" href={canonical} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <Font cssVariable="--font-display" preload />
+    <Font cssVariable="--font-body" />
+    <Font cssVariable="--font-data" />
+  </head>
+  <body>
+    <Navigation />
+    <slot />
+  </body>
+</html>

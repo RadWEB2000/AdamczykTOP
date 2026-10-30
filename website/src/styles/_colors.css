@@ -1,0 +1,28 @@
+@layer colors {
+    :root{
+        /* COLOR - BASE */
+        --color-base-100: oklab(98.341% 0.00565 -0.00805);
+        --color-base-200: oklab(96.5% 0.00112 -0.00393);
+        --color-base-300: oklab(90.665% 0.00397 -0.00594);
+        --color-base-400: oklab(82.854% 0.00261 -0.00506);
+        --color-base-500: oklab(75% 0.0015 -0.006);
+        --color-base-600: oklab(65% 0 -0.007);
+        --color-base-700: oklab(55% -0.0005 -0.008);
+        --color-base-800: oklab(42% -0.001 -0.009);
+        --color-base-900: oklab(30.021% -0.00161 -0.00989);
+        --color-base-1000: oklab(26.82% -0.00077 -0.00797);
+        --color-base-1100: oklab(23.478% -0.00039 -0.00412);
+        --color-base-1200: oklab(19.056% -0.00096 -0.00241);
+        --color-base-1300: oklab(13.493% 0.00066 -0.00232);
+        /* COLOR - SUPPORT */
+        --color-support-100: oklab(89.58% -0.00255 0.01598);
+        --color-support-200: oklab(84.65599999999999% -0.00259 0.0162);
+        --color-support-300: oklab(58.56400000000001% -0.00098 0.00746);
+        /* COLOR - BRAND */
+        --color-brand-100: oklab(75.889% 0.08031 0.11009);
+        --color-brand-200: oklab(73.394% 0.10611 0.14657);
+        --color-brand-300: oklab(69.018% 0.14737 0.13708);
+        --color-brand-400: oklab(62.17% 0.15296 0.12391);
+        --color-brand-500: oklab(64.71900000000001% 0.18247 0.11832);
+    }
+}

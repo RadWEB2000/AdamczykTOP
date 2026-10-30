@@ -1,0 +1,41 @@
+@layer reset {
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    a {
+        color:inherit;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    body {
+        font-size: 1.6rem;
+        line-height: 1;
+    }
+
+    button {
+        background: none;
+        border:none;
+        cursor: pointer;
+        outline:none;
+    }
+
+    html {
+        font-size: 62.5%;
+    }
+
+    img {
+        cursor: default;
+        filter:brightness(.95) contrast(1.05);
+        pointer-events: none;
+    }
+
+    li, ol, ul {
+        list-style: none;
+    }
+
+
+}

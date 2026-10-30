@@ -1,0 +1,29 @@
+@layer base {
+    html {
+        background-color: var(--color-base-200);
+        color:var(--color-base-1000);
+        font-family: var(--font-body);
+    }
+
+    h1,h2,h3,h4 {
+        font-family: var(--font-display);
+    }
+
+    ::-webkit-scrollbar {
+        background-color: var(--color-support-100);
+        width: 9.5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--color-base-500);
+        cursor: grabbing;
+        transition:.2s ease-in-out background-color;
+    }
+
+    ::-webkit-scrollbar-thumb:hover,
+    ::-webkit-scrollbar-thumb:focus,
+    ::-webkit-scrollbar-thumb:focus-within,
+    ::-webkit-scrollbar-thumb:focus-visible {
+        background-color: var(--color-base-200) !important;
+    }
+}

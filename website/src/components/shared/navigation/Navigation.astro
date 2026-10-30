@@ -1,0 +1,72 @@
+---
+import { navigation } from "../../../data/static/navigation";
+import MenuButton from "../../common/buttons/MenuButton.astro";
+import Brand from "./Brand.astro";
+import Menu from "./Menu.astro";
+const { brand, menu } = navigation;
+---
+
+<div class="wrapper" data-expanded="true">
+  <nav class="wrapper__inner">
+    <div class="brand">
+      <Brand brand={brand} uri="/" />
+    </div>
+    <div class="menu">
+      <Menu menu={[...menu].sort((a, b) => a.order - b.order)} />
+    </div>
+    <div class="settings">
+      <MenuButton />
+    </div>
+  </nav>
+</div>
+
+<style>
+  .wrapper {
+    background-color: var(--color-base-200);
+    border-bottom: 1px solid var(--color-base-500);
+    padding: 0.5rem 0;
+    overflow: hidden;
+
+    position: sticky;
+    top: 0;
+  }
+
+  .wrapper__inner {
+    background: lime;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 7.75rem 0;
+    place-content: center;
+    align-content: center;
+    transition: 0.75s ease-in-out grid-template-rows;
+  }
+
+  .wrapper[data-expanded="true"] > .wrapper__inner {
+    grid-template-rows: 7.75rem calc(100vh - 7.75rem);
+  }
+
+  .menu {
+    background: purple;
+    grid-column: 1/-1;
+  }
+
+  .brand,
+  .settings {
+    display: flex;
+    align-items: center;
+  }
+
+  .brand {
+    padding-left: 1rem;
+  }
+
+  .settings {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    background: orange;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+  }
+</style>

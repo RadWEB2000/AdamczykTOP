@@ -1,8 +1,0 @@
-export {default as CallToAction} from "@/shared/footer/CallToAction"
-export {default as Footer} from "@/shared/footer/Footer"
-export {default as Menu} from "@/shared/footer/Menu"
-export {default as Socials} from "@/shared/footer/Socials"
-export {default as Details} from "@/shared/footer/Details"
-export {default as Cities} from "@/shared/footer/Cities"
-export {default as Policies} from "@/shared/footer/Policies"
-export {default as Author} from "@/shared/footer/Author"

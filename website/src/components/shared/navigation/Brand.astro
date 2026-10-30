@@ -1,0 +1,35 @@
+---
+import Logo from "../../../assets/icons/Logo.astro";
+
+interface Props {
+  brand: string;
+  uri: string;
+}
+
+const { brand, uri } = Astro.props;
+---
+
+<a class="brand" href={uri}>
+  <Logo class="logo" />
+  <span class="title">{brand}</span>
+</a>
+
+<style>
+  .brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    --size: 5rem;
+    height: var(--size);
+    width: var(--size);
+  }
+
+  .title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2.65rem;
+  }
+</style>
