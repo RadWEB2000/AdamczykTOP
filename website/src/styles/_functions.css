@@ -1,0 +1,13 @@
+@function --transparentColor(--color type(<color>),--alpha type(<number>)) returns type(<color>) {
+    result: oklch(from var(--color) l c h / var(--alpha));
+}
+
+@function --lighter(--color <color>, --lightness-adjust <number>: 0.2) returns
+  <color> {
+  result: oklch(from var(--color) calc(l + var(--lightness-adjust)) c h);
+}
+
+@function --darker(--color <color>, --lightness-adjust <number>: 0.2) returns
+  <color> {
+  result: oklch(from var(--color) calc(l - var(--lightness-adjust)) c h);
+}

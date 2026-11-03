@@ -1,0 +1,64 @@
+---
+import ArrowRight from "@icons/ArrowRight.astro";
+import type { CallToAction } from "@ts/navigation.types";
+interface Props extends CallToAction {
+  variant: "mobile" | "desktop";
+}
+const { label, uri, variant } = Astro.props;
+---
+
+<a class="cta" data-variant={variant} href={uri}>
+  <span class="cta__text">{label}</span>
+  <i class="cta__arrow">
+    <ArrowRight class="cta__arrow__icon" />
+  </i>
+</a>
+
+<style>
+  .cta[data-variant="mobile"] {
+    align-items: center;
+    background-color: var(--color-base-1300);
+    color: var(--color-base-200);
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 0;
+    margin-top: auto;
+    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-weight: 700;
+    width: 100%;
+  }
+
+  .cta__text {
+    font-size: 2.15rem;
+    padding: 1.12rem 0 1.12rem 1.75rem;
+  }
+
+  .cta__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-color: var(--color-brand-400);
+    transition: 0.15s ease-in-out background-color;
+  }
+
+  .cta:hover > .cta__arrow {
+    background-color: var(--color-support-200);
+  }
+  .cta__arrow__icon {
+    --size: 4.45rem;
+    /* background-color: var(--color-brand-300); */
+    height: var(--size);
+    width: var(--size);
+  }
+  :global(.chevron) {
+    fill: var(--color-base-100);
+    transition: 0.23s ease-in-out fill;
+  }
+
+  .cta:hover > .cta__arrow > .cta__arrow__icon > :global(.chevron) {
+    fill: var(--color-base-1000);
+  }
+</style>

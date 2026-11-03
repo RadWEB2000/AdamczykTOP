@@ -1,0 +1,39 @@
+---
+import type { NavigationMenuLink } from "@ts/navigation.types";
+import { MenuItem as Item, MenuToggle as Toggle } from "@shared/navigation";
+
+interface Props extends Omit<NavigationMenuLink, "order"> {
+  groups: Array<
+    Omit<NavigationMenuLink, "order"> & {
+      description: string;
+      items: Array<Omit<NavigationMenuLink, "order">>;
+    }
+  >;
+}
+
+const { groups, ...link } = Astro.props;
+---
+
+<div class="mega">
+  <Toggle {...link} />
+  <div class="panel">
+    <div class="grid">
+      {
+        groups.map(({ items, ...link }) => {
+          return (
+            <div class="group">
+              <Item {...link} variant="mega" />
+              <div class="links">
+                {items.map((item) => {
+                  return <Item {...item} variant="mega-item" />;
+                })}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
+
+<style></style>

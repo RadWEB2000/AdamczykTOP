@@ -1,0 +1,33 @@
+---
+import ChevronDown from "@icons/ChevronDown.astro";
+import { MenuItem as Item } from "@shared/navigation";
+import type { NavigationMenuLink } from "@ts/navigation.types";
+
+interface Props extends Omit<NavigationMenuLink, "order"> {}
+
+const { ...link } = Astro.props;
+---
+
+<div class="menu-toggle">
+  <Item {...link} variant="main" />
+  <button class="button">
+    <ChevronDown class="icon" />
+  </button>
+</div>
+
+<style>
+  div {
+    align-items: center;
+    display: inline-flex;
+    gap: 0px 7px;
+  }
+  button {
+    --size: 2.3rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: salmon;
+    height: var(--size);
+    width: var(--size);
+  }
+</style>

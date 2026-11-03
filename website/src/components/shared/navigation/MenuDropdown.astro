@@ -1,0 +1,27 @@
+---
+import type { NavigationMenuLink } from "@ts/navigation.types";
+import { MenuItem as Item, MenuToggle as Toggle } from "@shared/navigation";
+
+interface Props extends Omit<NavigationMenuLink, "order"> {
+  items: Array<
+    Omit<NavigationMenuLink, "order"> & {
+      description: string;
+    }
+  >;
+}
+
+const { items, ...link } = Astro.props;
+---
+
+<div>
+  <Toggle {...link} />
+  <div>
+    <div>
+      {
+        items.map((item) => {
+          return <Item {...item} variant="dropdown" />;
+        })
+      }
+    </div>
+  </div>
+</div>

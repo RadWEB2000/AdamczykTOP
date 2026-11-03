@@ -1,63 +1,42 @@
 ---
+import {
+  MenuItem as Item,
+  MenuDropdown as Dropdown,
+  CallToAction as CTA,
+  MenuMega as Mega,
+} from "@shared/navigation";
+import type { CallToAction, NavigaitonMenuItem } from "@ts/navigation.types";
 interface Props {
-  menu: Array<{
-    label: string;
-    uri: string;
-    dropdown?: Array<{
-      label: string;
-      uri: string;
-    }>;
-  }>;
+  menu: Array<NavigaitonMenuItem>;
+  callToAction: CallToAction;
 }
 
-const { menu } = Astro.props;
+const { menu, callToAction } = Astro.props;
 ---
 
-<menu class="wrapper">
+<menu class="menu">
   {
-    menu.map(({ label, uri, dropdown }) => {
-      if (dropdown) {
-        return (
-          <div class="item__wrapper">
-            <div>
-              <a class="menu_item" href={uri}>
-                {label}
-              </a>
-              <button type="button">X</button>
-            </div>
-            <div class="dropdown">
-              <div class="dropdown__inner">
-                {dropdown.map(({ label, uri }) => {
-                  return (
-                    <a class="subitem" href={uri}>
-                      {label}
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        );
-      } else {
-        return (
-          <div class="item__wrapper">
-            <a class="item" href={uri}>
-              {label}
-            </a>
-          </div>
-        );
+    menu.map((item) => {
+      switch (item.type) {
+        case "dropdown":
+          return <Dropdown {...item} />;
+        case "mega":
+          return <Mega {...item} />;
+        default:
+          return <Item {...item} variant="main" />;
       }
     })
   }
+  <CTA {...callToAction} variant="mobile" />
 </menu>
 
 <style>
-  .wrapper,
-  .dropdown__inner {
+  .menu {
+    align-items: flex-start;
     display: flex;
     flex-flow: column;
-  }
-  .wrapper {
+    height: 100%;
     padding: 2rem;
+    width: 100%;
   }
 </style>

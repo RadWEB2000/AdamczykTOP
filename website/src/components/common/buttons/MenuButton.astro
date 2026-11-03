@@ -1,24 +1,27 @@
 ---
-let isOpenMenu = false;
 
-function handleButton() {
-  isOpenMenu = !isOpenMenu;
-}
 ---
 
-<button class="menu-button" data-open-menu={isOpenMenu}>
+<button
+  :aria-expanded="$store.navigation.open"
+  :aria-label="$store.navigation.open ? 'Zamknij menu' : 'Otwórz menu'"
+  :data-open-menu="$store.navigation.open"
+  @click="$store.navigation.toggle()"
+  class="menu-button"
+>
   <span class="menu-button__line"></span>
-  <span class="menu-button__line"></span>
+  <!-- <span class="menu-button__line"></span> -->
   <span class="menu-button__line"></span>
 </button>
 
 <style>
   .menu-button {
-    --size: 3.85rem;
+    --size: 3.45rem;
     padding: 0.15rem;
     display: flex;
     flex-flow: column;
     overflow: hidden;
+    flex-shrink: 0;
     justify-content: space-evenly;
     height: var(--size);
     width: var(--size);
@@ -31,19 +34,15 @@ function handleButton() {
   }
 
   .menu-button__line {
-    height: 3px;
+    height: 4px;
     border-radius: 2px;
     width: 100%;
-    background-color: var(--color-base-800);
+    background-color: var(--color-base-1000);
     transition:
       0.2s ease-in-out transform,
       0.32s ease-in-out background-color;
     transform-origin: center;
     display: block;
-  }
-
-  .menu-button:hover > .menu-button__line {
-    background-color: var(--color-brand-300);
   }
 
   .menu-button[data-open-menu="true"] > .menu-button__line:nth-of-type(1) {
@@ -52,26 +51,10 @@ function handleButton() {
     left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
   }
-  .menu-button[data-open-menu="true"] > .menu-button__line:nth-of-type(3) {
+  .menu-button[data-open-menu="true"] > .menu-button__line:nth-of-type(2) {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
   }
-  .menu-button[data-open-menu="true"] > .menu-button__line:nth-of-type(2) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scaleX(0);
-  }
 </style>
-
-<script>
-  const button = document.querySelector<HTMLButtonElement>(".menu-button");
-  button?.addEventListener("click", () => {
-    const isOpen = button.dataset.openMenu === "true";
-    button.dataset.openMenu = String(!isOpen);
-    button.setAttribute("aria-expanded", String(!isOpen));
-    button.setAttribute("aria-label", isOpen ? "Otwórz menu" : "Zamknij menu");
-  });
-</script>

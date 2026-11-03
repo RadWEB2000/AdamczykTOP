@@ -1,0 +1,32 @@
+---
+interface Props {
+  label: string;
+  uri: string;
+  description?: string;
+  variant: "main" | "mega" | "mega-item" | "dropdown";
+}
+
+const { label, uri, description, variant } = Astro.props;
+---
+
+<a
+  class="menu-item"
+  data-variant={variant}
+  href={uri}
+  @click="$store.navigation.close()"
+>
+  <span class="label">
+    {label}
+  </span>
+  {description && <span class="description">{description}</span>}
+</a>
+
+<style>
+  .menu-item {
+    background: lime;
+  }
+
+  .menu-item > span {
+    display: block;
+  }
+</style>

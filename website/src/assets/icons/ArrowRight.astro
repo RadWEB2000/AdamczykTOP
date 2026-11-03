@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"svg"> {}
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<svg
+  {...rest}
+  fill="none"
+  class={className}
+  height="512"
+  viewBox="0 0 24 24"
+  width="512"
+  xmlns="http://www.w3.org/2000/svg"
+  ><path
+    class="chevron"
+    clip-rule="evenodd"
+    d="m10.5999 5.6 6 6h-12.60002v2h12.60002l-6 6 1.4 1.4 8.4-8.4-8.4-8.4z"
+    fill="rgb(0,0,0)"
+    fill-rule="evenodd"></path></svg
+>
+
+<style>
+  .chevron {
+  }
+</style>

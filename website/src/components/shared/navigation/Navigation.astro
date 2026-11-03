@@ -1,72 +1,103 @@
 ---
-import { navigation } from "../../../data/static/navigation";
-import MenuButton from "../../common/buttons/MenuButton.astro";
-import Brand from "./Brand.astro";
-import Menu from "./Menu.astro";
-const { brand, menu } = navigation;
+import { navigation } from "@static/navigation";
+import { MenuButton } from "@common/buttons";
+import { Brand, CallToAction, Menu } from "@shared/navigation";
+const { brand, menu, callToAction } = navigation;
 ---
 
-<div class="wrapper" data-expanded="true">
-  <nav class="wrapper__inner">
-    <div class="brand">
-      <Brand brand={brand} uri="/" />
-    </div>
-    <div class="menu">
-      <Menu menu={[...menu].sort((a, b) => a.order - b.order)} />
-    </div>
-    <div class="settings">
-      <MenuButton />
-    </div>
-  </nav>
+<!-- <div
+  x-data
+  class="navigation"
+  :data-expanded="$store.navigation.open"
+  :data-scrolled="$store.navigation.scrolled"
+> -->
+<div
+  x-data
+  class="navigation"
+  :data-expanded="true"
+  :data-scrolled="$store.navigation.scrolled"
+>
+  <div x-data class="container" :data-expanded="true">
+    <nav class="inner">
+      <div class="brand">
+        <Brand brand={brand} uri="/" />
+      </div>
+      <div class="menu">
+        <Menu
+          menu={[...menu].sort((a, b) => a.order - b.order)}
+          callToAction={callToAction}
+        />
+      </div>
+      <div class="settings">
+        <MenuButton />
+      </div>
+      <div class="cta">
+        <CallToAction {...callToAction} variant="desktop" />
+      </div>
+    </nav>
+  </div>
+
+  <style>
+    .cta {
+      display: none;
+    }
+
+    .navigation {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      isolation: isolate;
+      transition: 0.25s ease-in-out box-shadow;
+      z-index: 99;
+    }
+    .container {
+      --menuHeight: 6.95rem;
+      background-color: var(--color-base-200);
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .inner {
+      --settingsWidth: 7.5rem;
+      display: grid;
+      grid-template-rows: var(--menuHeight) 0;
+      grid-template-columns: calc(100% - var(--settingsWidth)) var(
+          --settingsWidth
+        );
+      transition: 0.32s ease-in-out grid-template-rows;
+    }
+
+    .brand,
+    .settings {
+      align-items: center;
+      display: flex;
+    }
+    .brand {
+      grid-column: 1;
+      justify-content: flex-start;
+      padding-left: 1rem;
+      grid-row: 1;
+    }
+    .menu {
+      grid-column: 1/-1;
+      grid-row: 2;
+    }
+    .settings {
+      justify-content: flex-end;
+      grid-column: 2;
+      padding-right: 1rem;
+      grid-row: 1;
+    }
+
+    /* NAVIGATION - OPEN */
+    .navigation[data-expanded="true"] .container > .inner {
+      grid-template-rows: var(--menuHeight) calc(100vh - var(--menuHeight));
+    }
+
+    /* NAVIGATION - SCROLLED */
+    .navigation[data-scrolled="true"]:not([data-expanded="true"]) {
+      box-shadow: 0 0 0 1.5px var(--color-base-900);
+    }
+  </style>
 </div>
-
-<style>
-  .wrapper {
-    background-color: var(--color-base-200);
-    border-bottom: 1px solid var(--color-base-500);
-    padding: 0.5rem 0;
-    overflow: hidden;
-
-    position: sticky;
-    top: 0;
-  }
-
-  .wrapper__inner {
-    background: lime;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 7.75rem 0;
-    place-content: center;
-    align-content: center;
-    transition: 0.75s ease-in-out grid-template-rows;
-  }
-
-  .wrapper[data-expanded="true"] > .wrapper__inner {
-    grid-template-rows: 7.75rem calc(100vh - 7.75rem);
-  }
-
-  .menu {
-    background: purple;
-    grid-column: 1/-1;
-  }
-
-  .brand,
-  .settings {
-    display: flex;
-    align-items: center;
-  }
-
-  .brand {
-    padding-left: 1rem;
-  }
-
-  .settings {
-    grid-row-start: 1;
-    grid-column-start: 2;
-    background: orange;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 1rem;
-  }
-</style>

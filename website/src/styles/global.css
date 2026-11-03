@@ -1,6 +1,8 @@
+@import "./_animations.css";
 @import "./_base.css";
 @import "./_colors.css";
 @import "./_fonts.css";
+@import "./_functions.css";
 @import "./_reset.css";
 @import "./_tests.css";
 
