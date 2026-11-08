@@ -11,61 +11,44 @@ const { brand, uri } = Astro.props;
 
 <a
   @click="$store.navigation.close()"
-  :data-expanded="$store.navigation.open"
   class="brand"
-  x-data
   href={uri}
 >
   <Logo class="logo" />
-  <span class="title">ADAMCZYKTOP</span>
-  <!-- <span class="brand__title">Leagcy</span> -->
+  <span class="title">Adamczyk<span class="special">TOP</span></span>
 </a>
 
 <style>
   .brand {
+    --color:var(--color-base-1300);
+    --gap:3.5px;
+    --logo:min(3.25rem,4.15rem);
+    --title:clamp(2.35rem,calc(1.65rem + 1.2vw), 3.45rem);
+    --special:var(--color-base-1300);
     align-items: center;
     display: inline-flex;
-    gap: 3.5px;
+    gap: var(--gap);
+    &:hover,
+    &:focus {
+      --special:var(--color-brand-400);
+    }
   }
 
   .logo {
-    --size: 4.05rem;
     flex-shrink: 0;
-    height: var(--size);
-    width: var(--size);
+    height: var(--logo);
+    width: var(--logo);
   }
   .title {
-    --size: 3.05rem;
+    color: var(--color);
+    font: 900  var(--title) / 1 var(--font-display);
+    /* font-family: var(--font-display); */
+    /* font-size: var(--title); */
+    /* font-weight: 900; */
     letter-spacing: 1.5px;
-    color: var(--color-base-1100);
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--size);
   }
-
-  @media (width > 600px) {
-    .title {
-      --size: 3.35rem;
-    }
-    .logo {
-      --size: 4.45rem;
-    }
-  }
-
-  @media (width > 1049px) {
-    .title {
-      --size: 2.35rem;
-    }
-    .logo {
-      --size: 2.45rem;
-    }
-  }
-  @media (width > 1494px) {
-    .title {
-      --size: 3.25rem;
-    }
-    .logo {
-      --size: 3.75rem;
-    }
+  .special {
+    color:var(--special);
+    transition:.2s ease-in-out color;
   }
 </style>
