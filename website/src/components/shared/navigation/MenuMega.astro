@@ -18,14 +18,12 @@ const hoverSupported =
 
 <div
   class="mega"
-  x-data="{expanded:false}"
   @mouseenter={`if (${hoverSupported}) openMenu(${id})`}
   @mouseleave={`if (${hoverSupported}) closeMenu(${id})`}
 >
   <Toggle panelId={panelId} {...link} />
   <div
     class="panel"
-    @mouseleave={`if (${hoverSupported}) closeMenu(${id})`}
     :data-expanded={`activeMenu === ${id}`}
     :inert={`activeMenu !== ${id}`}
   >
@@ -50,32 +48,36 @@ const hoverSupported =
 
 <style>
   .mega {
+    --animation:.17s ease-in-out;
+    --background:var(--color-base-200);
+    --columns:repeat(4,1fr);
+    --gap-grid:1rem 0;
+    --gap-links:.65rem 0;
+    --padding:1rem 0 0 0;
+    --rows: 0fr;
+    --shadow:0 0 1px 1.5px --transparentColor(var(--color-base-1300), 0.85);
     width: 100%;
   }
   .panel {
-    --rows: 0fr;
     display: grid;
     grid-template-rows: var(--rows);
     transition:
-      0.15s ease-in-out grid-template-rows,
-      0.25s ease-in-out transform;
+      var(--animation) grid-template-rows;
+    &[data-expanded="true"] {
+      --rows: 1fr;
+    }
   }
-
-  .panel[data-expanded="true"] {
-    --rows: 1fr;
-  }
-
   .grid {
     display: grid;
-    gap: 1rem 0;
+    gap: var(--gap-grid);
     min-height: 0;
     overflow: hidden;
-    padding-top: 1rem;
+    padding: var(--padding);
   }
   .links {
     display: flex;
     flex-flow: column;
-    gap: 6.5px 0;
+    gap: var(--gap-links);
   }
   @media (width > 599px) {
     .grid {
@@ -84,50 +86,42 @@ const hoverSupported =
   }
   @media (width > 1049px) {
     .mega {
+      --gap-grid:3rem;
+      --gap-links:.85rem 0;
+      --padding:3rem;
       position: static;
       width: fit-content;
     }
 
     .panel {
-      background: var(--color-base-200);
+      background: var(--background);
       border-radius: 1rem;
-      box-shadow: 0 0 1px 1.5px --transparentColor(var(--color-base-1300), 0.85);
+      box-shadow:var(--shadow);
       corner-shape: scoop;
       display: block;
       left: 0;
       opacity: 0;
       position: absolute;
       right: 0;
-      top: calc(100% + 0rem);
-      transform: translateY(0.5rem) scaleY(1);
-      transform-origin: top;
+      top: 100%;
+      transform: translateY(0.5rem) ;
       transition:
-        0.15s ease-in-out opacity,
-        0.15s ease-in-out transform,
-        0.15s ease-in-out visibility;
+        var(--animation) opacity,
+        var(--animation) transform,
+        var(--animation) visibility;
       visibility: hidden;
       z-index: 999;
       width: 100%;
-    }
-    .panel[data-expanded="true"] {
-      opacity: 1;
-      transform: translateY(0) scaleY(1);
-      transition:
-        0.1s ease-in-out opacity,
-        0.1s ease-in-out transform,
-        0.1s ease-in-out visibility;
-      visibility: visible;
+      &[data-expanded="true"] {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
     }
 
     .grid {
-      display: grid;
-      gap: 3rem;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: var(--columns);
       overflow: visible;
-      padding: 3rem;
-    }
-    .links {
-      gap: 8.5px 0;
     }
   }
 </style>
