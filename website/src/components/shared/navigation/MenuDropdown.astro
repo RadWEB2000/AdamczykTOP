@@ -73,7 +73,6 @@ const hoverSupported =
       --width:fit-content;
       position: static;
     }
-
     .dropdown {
       background: var(--background);
       border-radius: 1rem;
@@ -84,7 +83,7 @@ const hoverSupported =
       position: absolute;
       right: 0;
       top: 100%;
-      transform: translateY(0.5rem) scaleY(1);
+      transform: translateY(0.5rem);
       transform-origin: top;
       transition:
         var(--animation) opacity,
@@ -94,7 +93,7 @@ const hoverSupported =
       width:var(--dropdown);
       &[data-expanded="true"] {
         opacity: 1;
-        transform: translateY(0) scaleY(1);
+        transform: translateY(0);
         visibility: visible;
       }
     }
