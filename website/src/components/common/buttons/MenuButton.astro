@@ -1,7 +1,3 @@
----
-
----
-
 <button
   :aria-expanded="$store.navigation.open"
   :aria-label="$store.navigation.open ? 'Zamknij menu' : 'Otwórz menu'"
@@ -9,52 +5,63 @@
   @click="$store.navigation.toggle()"
   class="menu-button"
 >
-  <span class="menu-button__line"></span>
-  <!-- <span class="menu-button__line"></span> -->
-  <span class="menu-button__line"></span>
+  <span class="line"></span>
+  <span class="line"></span>
 </button>
 
 <style>
   .menu-button {
+    --animate:.2s ease-in-out;
+    --color:var(--color-base-1000);
+    --line:4px;
     --size: 3.45rem;
-    padding: 0.15rem;
     display: flex;
     flex-flow: column;
-    overflow: hidden;
     flex-shrink: 0;
-    justify-content: space-evenly;
     height: var(--size);
-    width: var(--size);
-    transition: 0.2s ease-in-out transform;
+    justify-content: space-evenly;
+    overflow: hidden;
+    padding: 0.15rem;
     position: relative;
+    transition: var(--animate) transform;
+    width: var(--size);
+    
+    &:active {
+      transform: scale(0.95);
+    }
   }
 
-  .menu-button:active {
-    transform: scale(0.95);
-  }
 
-  .menu-button__line {
-    height: 4px;
+  .line {
+    background-color: var(--color);
     border-radius: 2px;
-    width: 100%;
-    background-color: var(--color-base-1000);
-    transition:
-      0.2s ease-in-out transform,
-      0.32s ease-in-out background-color;
-    transform-origin: center;
     display: block;
+    height: var(--line);
+    transform-origin: center;
+    transition:
+      var(--animate) transform,
+      var(--animate) background-color;
+    width: 100%;
   }
 
-  .menu-button[data-open-menu="true"] > .menu-button__line:nth-of-type(1) {
+  .menu-button[data-open-menu=true] > .line {
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
+  }
+
+  .menu-button[data-open-menu="true"] > .line:nth-of-type(1) {
     transform: translate(-50%, -50%) rotate(45deg);
   }
-  .menu-button[data-open-menu="true"] > .menu-button__line:nth-of-type(2) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  .menu-button[data-open-menu="true"] > .line:nth-of-type(2) {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .line ,
+    .menu-button {
+      transition: none;
+    }
+  }
+
 </style>
