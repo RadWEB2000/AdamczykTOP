@@ -8,48 +8,90 @@ const { label, uri, variant } = Astro.props;
 ---
 
 <a class="cta" data-variant={variant} href={uri}>
-  <span class="cta__text">{label}</span>
-  <i class="cta__arrow">
-    <ArrowRight class="cta__arrow__icon" />
+  <span class="text">{label}</span>
+  <i class="arrow">
+    <ArrowRight class="icon" />
   </i>
 </a>
 
 <style>
-  .cta[data-variant="mobile"] {
+  .cta {
     align-items: center;
-    background-color: var(--color-base-1300);
+    /* background-color: var(--color-base-1300); */
     color: var(--color-base-200);
     display: inline-flex;
     justify-content: space-between;
     padding: 0;
-    margin-top: auto;
     text-transform: uppercase;
-    font-family: var(--font-display);
+    font-family: var(--font-headings);
     font-weight: 700;
+  }
+  .cta[data-variant="mobile"] {
+    margin-top: auto;
     width: 100%;
   }
-
-  .cta__text {
-    font-size: 2.15rem;
-    padding: 1.12rem 0 1.12rem 1.75rem;
+  .cta[data-variant="desktop"] {
+    margin: auto unset;
+    height: 5rem;
+    max-width: 100%;
   }
 
-  .cta__arrow {
-    display: flex;
+  .cta[data-variant="desktop"] > * {
+    flex-shrink: 0;
+  }
+
+  .cta[data-variant="desktop"] > .text {
+    --size: 2rem;
+    --padding: 0rem 1.5rem;
+    corner-shape: scoop;
     align-items: center;
+    display: flex;
     justify-content: center;
+    background-color: var(--color-base-1300);
+    /* padding: 3rem; */
     height: 100%;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .cta[data-variant="desktop"] > .arrow {
+    --size: 2rem;
+    /* --padding: 1rem 0.5rem; */
+    corner-shape: scoop;
+    /* background: gold; */
+    border-radius: 0.75rem;
+    margin-left: 0.25rem;
+    overflow: hidden;
+  }
+
+  .cta[data-variant="desktop"] > .arrow > .icon {
+    /* background: lime; */
+    --size: 70%;
+  }
+  .text {
+    font-size: var(--size);
+    padding: var(--padding);
+  }
+
+  .cta[data-variant="mobile"] > .text {
+    --size: 2.15rem;
+    --padding: 1.12rem 0 1.12rem 1.75rem;
+  }
+
+  .arrow {
+    align-items: center;
     aspect-ratio: 1/1;
     background-color: var(--color-brand-400);
+    display: flex;
+    height: 100%;
+    justify-content: center;
     transition: 0.15s ease-in-out background-color;
   }
 
-  .cta:hover > .cta__arrow {
+  .cta:hover > .arrow {
     background-color: var(--color-support-200);
   }
-  .cta__arrow__icon {
+  .icon {
     --size: 4.45rem;
-    /* background-color: var(--color-brand-300); */
     height: var(--size);
     width: var(--size);
   }
@@ -58,7 +100,47 @@ const { label, uri, variant } = Astro.props;
     transition: 0.23s ease-in-out fill;
   }
 
-  .cta:hover > .cta__arrow > .cta__arrow__icon > :global(.chevron) {
+  .cta:hover > .arrow > .icon > :global(.chevron) {
     fill: var(--color-base-1000);
+  }
+
+  @media (width > 600px) {
+    .cta[data-variant="mobile"] > .text {
+      --size: 2.75rem;
+      --padding: 1.42rem 0 1.42rem 1.75rem;
+    }
+    .cta[data-variant="mobile"] > .icon {
+      --size: 6.25rem;
+    }
+  }
+  @media (width > 1049px) {
+    .cta[data-variant="mobile"] {
+      margin-top: unset;
+      margin-left: auto;
+      display: none;
+      width: auto;
+    }
+    .cta[data-variant="mobile"] > .text {
+      --size: 1.75rem;
+      --padding: 1.22rem 1rem;
+    }
+    .cta[data-variant="mobile"] > .icon {
+      --size: 1.25rem;
+    }
+  }
+
+  @media (width > 1494px) {
+    .cta[data-variant="desktop"] > .text {
+      --size: 2.4rem;
+      --padding: 0rem 2.85rem;
+      height: 100%;
+    }
+    .cta[data-variant="desktop"] > .arrow {
+      margin-left: 0.35rem;
+    }
+
+    .cta[data-variant="desktop"] > .arrow > .icon {
+      --size: 85%;
+    }
   }
 </style>

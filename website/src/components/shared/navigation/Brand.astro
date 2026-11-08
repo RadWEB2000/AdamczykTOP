@@ -16,8 +16,9 @@ const { brand, uri } = Astro.props;
   x-data
   href={uri}
 >
-  <Logo class="brand__logo" />
-  <span class="brand__title">{brand}</span>
+  <Logo class="logo" />
+  <span class="title">ADAMCZYKTOP</span>
+  <!-- <span class="brand__title">Leagcy</span> -->
 </a>
 
 <style>
@@ -27,17 +28,44 @@ const { brand, uri } = Astro.props;
     gap: 3.5px;
   }
 
-  .brand__logo {
-    --size: 3.45rem;
+  .logo {
+    --size: 4.05rem;
     flex-shrink: 0;
     height: var(--size);
     width: var(--size);
   }
-  .brand__title {
-    --size: 2.65rem;
+  .title {
+    --size: 3.05rem;
+    letter-spacing: 1.5px;
     color: var(--color-base-1100);
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--size);
+  }
+
+  @media (width > 600px) {
+    .title {
+      --size: 3.35rem;
+    }
+    .logo {
+      --size: 4.45rem;
+    }
+  }
+
+  @media (width > 1049px) {
+    .title {
+      --size: 2.35rem;
+    }
+    .logo {
+      --size: 2.45rem;
+    }
+  }
+  @media (width > 1494px) {
+    .title {
+      --size: 3.25rem;
+    }
+    .logo {
+      --size: 3.75rem;
+    }
   }
 </style>

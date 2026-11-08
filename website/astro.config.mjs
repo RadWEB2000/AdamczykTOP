@@ -11,15 +11,15 @@ export default defineConfig({
   fonts:[
       {
           provider: fontProviders.local(),
-          name:'Stack Sans Headline',
-          cssVariable:'--font-display',
+          name:'Bigger Display',
+          cssVariable:'--font-legend-bold',
           weights:[400,500,600,700],
           subsets: ["latin", "latin-ext"],
           options:{
               variants:[
                   {
-                      src:['./src/assets/fonts/stack-sans-headline.woff2'],
-                      weight:'200 700',
+                      src:['./src/assets/fonts/legend-bold.woff2'],
+                      weight:'400 900',
                       style:'normal'
                   }
               ]
@@ -28,15 +28,14 @@ export default defineConfig({
       },
       {
           provider:fontProviders.local(),
-          name:'Space Grotesk',
-          cssVariable:'--font-body',
-          weights:[400,500,600,700],
+          name:'Outfit',
+          cssVariable:'--font-outfit',
           subsets: ["latin", "latin-ext"],
           options:{
               variants:[
                   {
-                      src:['./src/assets/fonts/space-grotesk.woff2'],
-                      weight:'200 700',
+                      src:['./src/assets/fonts/outfit.woff2'],
+                      weight:'100 900',
                       style:'normal'
                   }
               ]
@@ -45,16 +44,20 @@ export default defineConfig({
       },
       {
           provider:fontProviders.local(),
-          name:'Bitcount Prop Single',
-          cssVariable:'--font-data',
-          weights:[400,600],
+          name:'DM Sans',
+          cssVariable:'--font-dm-sans',
           options:{
               variants:[
                   {
-                      src:['./src/assets/fonts/bitcount-prop-single.woff2'],
-                      weight:'200 700',
+                      src:['./src/assets/fonts/dm-sans.woff2'],
+                      weight:'100 900',
                       style:'normal'
-                  }
+                  },
+                  {
+                      src:['./src/assets/fonts/dm-sans-italic.woff2'],
+                      weight:'100 900',
+                      style:'italic'
+                  },
               ]
           },
           subsets: ["latin", "latin-ext"],

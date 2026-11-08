@@ -14,7 +14,37 @@ interface Props {
 const { menu, callToAction } = Astro.props;
 ---
 
-<menu class="menu">
+<menu
+  class="menu"
+  x-data="{
+    activeMenu: null,
+    closeTimer: null,
+
+    openMenu(id) {
+      clearTimeout(this.closeTimer);
+      this.activeMenu = id;
+    },
+
+    closeMenu(id) {
+      clearTimeout(this.closeTimer);
+
+      this.closeTimer = setTimeout(() => {
+        if (this.activeMenu === id) {
+          this.activeMenu = null;
+        }
+      }, 150);
+    },
+
+    cancelClose() {
+      clearTimeout(this.closeTimer);
+    },
+
+    toggleMenu(id) {
+      clearTimeout(this.closeTimer);
+      this.activeMenu = this.activeMenu === id ? null : id;
+    }
+  }"
+>
   {
     menu.map((item) => {
       switch (item.type) {
@@ -36,7 +66,26 @@ const { menu, callToAction } = Astro.props;
     display: flex;
     flex-flow: column;
     height: 100%;
+    gap: 17px 0;
+    overflow-y: scroll;
     padding: 2rem;
+    scrollbar-width: none;
     width: 100%;
+  }
+  @media (width > 600px) {
+    .menu {
+      padding: 2rem 3rem;
+    }
+  }
+  @media (width > 1049px) {
+    .menu {
+      /* background: pink; */
+      align-items: center;
+      flex-flow: row;
+      justify-content: flex-end;
+      gap: 0 10px;
+      padding: 0;
+      overflow-y: visible;
+    }
   }
 </style>

@@ -5,8 +5,7 @@ interface Props {
   description?: string;
   variant: "main" | "mega" | "mega-item" | "dropdown";
 }
-
-const { label, uri, description, variant } = Astro.props;
+const { label, uri, description, variant = "main" } = Astro.props;
 ---
 
 <a
@@ -23,10 +22,117 @@ const { label, uri, description, variant } = Astro.props;
 
 <style>
   .menu-item {
-    background: lime;
+    --description: 1.23rem;
+    color: var(--color-base-1200);
+    cursor: pointer;
+    display: block;
+    font-family: var(--font-headings);
+    text-transform: uppercase;
+    & > * {
+      display: block;
+    }
+    & > .label {
+      font-size: var(--label);
+      font-weight: var(--weight);
+    }
+    & > .description {
+      color: var(--color-base-1000);
+      font-size: var(--description);
+      font-weight: 500;
+      margin-top: 0.45rem;
+      text-wrap: balance;
+      width: min(100%, 35ch);
+    }
+  }
+  .menu-item[data-variant="main"] {
+    --label: 2.32rem;
+    --weight: 700;
+  }
+  .menu-item[data-variant="mega"] {
+    --label: 1.52rem;
+    --weight: 700;
+    margin-bottom: 0.55rem;
+  }
+  .menu-item[data-variant="mega-item"] {
+    --label: 1.45rem;
+    --weight: 300;
+  }
+  .menu-item[data-variant="dropdown"] {
+    --label: 1.45rem;
+    --weight: 700;
   }
 
-  .menu-item > span {
-    display: block;
+  @media (width > 599px) {
+    .menu-item[data-variant="main"] {
+      --label: 2.75rem;
+      --weight: 700;
+    }
+    .menu-item[data-variant="mega"] {
+      --label: 2rem;
+      --description: 1.5rem;
+    }
+    .menu-item[data-variant="mega-item"] {
+      --label: 1.65rem;
+      --weight: 300;
+    }
+    .menu-item[data-variant="dropdown"] {
+      --label: 2rem;
+      --description: 1.55rem;
+    }
+  }
+  @media (width > 599px) {
+    .menu-item[data-variant="mega"] {
+      margin-bottom: 1.25rem;
+      .description {
+        margin-top: 0.85rem;
+      }
+    }
+  }
+  @media (width > 1049px) {
+    .menu-item[data-variant="main"] {
+      --label: 1.62rem;
+      --weight: 700;
+    }
+    .menu-item[data-variant="mega"] {
+      --label: 1.55rem;
+      --description: 1.2rem;
+      margin-bottom: 1.5rem;
+      .description {
+        margin-top: 1rem;
+      }
+    }
+    .menu-item[data-variant="mega-item"] {
+      --label: 1.25rem;
+    }
+    .menu-item[data-variant="dropdown"] {
+      --label: 2rem;
+      --description: 1.55rem;
+    }
+  }
+
+  @media (width > 1224px) {
+    .menu-item[data-variant="main"] {
+      --label: 1.7rem;
+      --weight: 700;
+    }
+    .menu-item[data-variant="mega"] {
+      --label: 1.75rem;
+      --description: 1.45rem;
+    }
+    .menu-item[data-variant="mega-item"] {
+      --label: 1.5rem;
+    }
+  }
+  @media (width > 1494px) {
+    .menu-item[data-variant="main"] {
+      --label: 1.97rem;
+    }
+    .menu-item[data-variant="mega"] {
+      --label: 2.15rem;
+      --description: 1.65rem;
+    }
+    .menu-item[data-variant="mega-item"] {
+      --label: 1.55rem;
+    }
   }
 </style>

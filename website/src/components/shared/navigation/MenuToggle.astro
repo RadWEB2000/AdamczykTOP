@@ -3,14 +3,23 @@ import ChevronDown from "@icons/ChevronDown.astro";
 import { MenuItem as Item } from "@shared/navigation";
 import type { NavigationMenuLink } from "@ts/navigation.types";
 
-interface Props extends Omit<NavigationMenuLink, "order"> {}
+interface Props extends Omit<NavigationMenuLink, "order"> {
+  panelId?: string;
+}
 
-const { ...link } = Astro.props;
+const { panelId, ...link } = Astro.props;
 ---
 
 <div class="menu-toggle">
   <Item {...link} variant="main" />
-  <button class="button">
+  <button
+    :aria-expanded={`activeMenu === ${JSON.stringify(panelId)}`}
+    @click={`toggleMenu(${JSON.stringify(panelId)})`}
+    aria-controls={panelId}
+    aria-label="Rozwiń lub zwiń podmenu"
+    class="button"
+    type="button"
+  >
     <ChevronDown class="icon" />
   </button>
 </div>
@@ -19,15 +28,37 @@ const { ...link } = Astro.props;
   div {
     align-items: center;
     display: inline-flex;
-    gap: 0px 7px;
+    gap: 0px 4px;
   }
   button {
-    --size: 2.3rem;
+    --size: 2.5rem;
     align-items: center;
     display: flex;
-    justify-content: center;
-    background-color: salmon;
     height: var(--size);
+    justify-content: center;
     width: var(--size);
+  }
+
+  @media (width > 1049px) {
+    div {
+      gap: 0 1px;
+    }
+
+    button {
+      --size: 2rem;
+    }
+  }
+  @media (width > 1849px) {
+    div {
+      gap: 0 3px;
+      height: 100%;
+    }
+
+    button {
+      --size: 2.35rem;
+    }
+  }
+
+  .icon {
   }
 </style>
