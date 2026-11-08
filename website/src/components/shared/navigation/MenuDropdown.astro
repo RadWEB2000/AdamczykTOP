@@ -9,27 +9,21 @@ interface Props extends Omit<NavigationMenuLink, "order"> {
     }
   >;
 }
-
 const { items, ...link } = Astro.props;
-
 const panelId = `dropdown-${crypto.randomUUID()}`;
-
 const id = JSON.stringify(panelId);
-
 const hoverSupported =
   "window.matchMedia('(hover: hover) and (pointer: fine)').matches";
 ---
 
 <div
   class="menu-dropdown"
-  x-data="{expanded:false}"
   @mouseenter={`if (${hoverSupported}) openMenu(${id})`}
   @mouseleave={`if (${hoverSupported}) closeMenu(${id})`}
 >
   <Toggle panelId={panelId} {...link} />
   <div
     class="dropdown"
-    @mouseleave={`if (${hoverSupported}) closeMenu(${id})`}
     :data-expanded={`activeMenu === ${id}`}
     :inert={`activeMenu !== ${id}`}
   >
@@ -47,7 +41,7 @@ const hoverSupported =
   .menu-dropdown {
     --animation:.17s ease-in-out;
     --background:var(--color-base-200);
-    --dropdown: max(100px, 350px);
+    --dropdown: clamp(10rem, 25vw, 30rem);
     --gap:5px 0;
     --padding:1rem 0 0 0;
     --rows: 0fr;
@@ -60,22 +54,21 @@ const hoverSupported =
     grid-template-rows: var(--rows);
     overflow: hidden;
     transition: var(--animation) grid-template-rows;
+    &[data-expanded=true]{
+      --rows:1fr;
+    }
   }
-
-  .dropdown[data-expanded="true"] {
-    --rows: 1fr;
-  }
-
   .items {
     display: flex;
     flex-flow: column;
     gap: var(--gap);
     min-height: 0;
     overflow: hidden;
-    padding-top: 1rem;
+    padding: var(--padding);
   }
   @media (width > 1049px) {
     .menu-dropdown {
+      --padding:3rem;
       --gap:2.8rem 0;
       --width:fit-content;
       position: static;
@@ -91,7 +84,7 @@ const hoverSupported =
       position: absolute;
       right: 0;
       top: 100%;
-      transform: translateY(0) scaleY(1);
+      transform: translateY(0.5rem) scaleY(1);
       transform-origin: top;
       transition:
         var(--animation) opacity,
@@ -99,19 +92,12 @@ const hoverSupported =
         var(--animation) visibility;
       visibility: hidden;
       width:var(--dropdown);
+      &[data-expanded="true"] {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+        visibility: visible;
+      }
     }
 
-    .dropdown[data-expanded="true"] {
-      transform: translateY(0) scaleY(1);
-      opacity: 1;
-      visibility: visible;
-      transition:
-        var(--animation)  opacity,
-        var(--animation) transform,
-        var(--animation) visibility;
-    }
-    .items {
-      padding: 3rem;
-    }
   }
 </style>
