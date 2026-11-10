@@ -25,40 +25,31 @@ const { panelId, ...link } = Astro.props;
 </div>
 
 <style>
-  div {
+  .menu-toggle {
+    --button: 2.5rem;
+    --gap: 0 4px;
     align-items: center;
     display: inline-flex;
-    gap: 0px 4px;
+    gap: var(--gap);
   }
-  button {
-    --size: 2.5rem;
+  .button {
     align-items: center;
     display: flex;
-    height: var(--size);
+    height: var(--button);
     justify-content: center;
-    width: var(--size);
+    width: var(--button);
   }
 
   @media (width > 1049px) {
-    div {
-      gap: 0 1px;
-    }
-
-    button {
-      --size: 2rem;
+    .menu-toggle {
+      --button: 2rem;
+      --gap: 0 1px;
     }
   }
-  @media (width > 1849px) {
-    div {
-      gap: 0 3px;
-      height: 100%;
+  @media (width > 1494px) {
+    .menu-toggle {
+      --button: 2.35rem;
+      --gap: 0 3px;
     }
-
-    button {
-      --size: 2.35rem;
-    }
-  }
-
-  .icon {
   }
 </style>

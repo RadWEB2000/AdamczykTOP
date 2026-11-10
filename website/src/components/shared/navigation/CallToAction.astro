@@ -9,138 +9,109 @@ const { label, uri, variant } = Astro.props;
 
 <a class="cta" data-variant={variant} href={uri}>
   <span class="text">{label}</span>
-  <i class="arrow">
+  <span aria-hidden="true" class="arrow">
     <ArrowRight class="icon" />
-  </i>
+  </span>
 </a>
 
 <style>
   .cta {
+    --animation: 0.25s ease-in-out;
+    --label-bg: var(--color-base-1300);
+    --label-color: var(--color-base-200);
+    --label-size: 2.15rem;
+    --icon-size: 4.45rem;
+    --icon-bg: var(--color-brand-400);
+    --icon-bg-hover: var(--color-support-200);
+    --padding: 1.12rem 0 1.12rem 1.75rem;
+    --margin: auto;
+    --height: 5rem;
     align-items: center;
-    /* background-color: var(--color-base-1300); */
-    color: var(--color-base-200);
     display: inline-flex;
     justify-content: space-between;
-    padding: 0;
-    text-transform: uppercase;
-    font-family: var(--font-headings);
-    font-weight: 700;
+    margin: var(--margin);
+    & > .arrow {
+      align-items: center;
+      aspect-ratio: 1;
+      background-color: var(--icon-bg);
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      transition: var(--animation) background-color;
+      & > .icon {
+        height: var(--icon-size);
+        width: var(--icon-size);
+      }
+    }
+    & > .text {
+      color: var(--label-color);
+      font: 700 var(--label-size) / 1 var(--font-headings);
+      padding: var(--padding);
+      text-transform: uppercase;
+    }
+    &:hover > .arrow {
+      background-color: var(--icon-bg-hover);
+    }
+    &:hover > .arrow > .icon > :global(.chevron) {
+      fill: var(--color-base-1000);
+    }
   }
+
+  :global(.chevron) {
+    fill: var(--color-base-100);
+    transition: var(--animation) fill;
+  }
+
   .cta[data-variant="mobile"] {
-    margin-top: auto;
+    --margin: auto auto 0 auto;
+    background-color: var(--label-bg);
     width: 100%;
   }
   .cta[data-variant="desktop"] {
-    margin: auto unset;
-    height: 5rem;
+    --label-size: 2rem;
+    --icon-size: 70%;
+    --padding: 0 1.5rem;
+    --margin: auto unset;
+    height: var(--height);
     max-width: 100%;
-  }
-
-  .cta[data-variant="desktop"] > * {
-    flex-shrink: 0;
-  }
-
-  .cta[data-variant="desktop"] > .text {
-    --size: 2rem;
-    --padding: 0rem 1.5rem;
-    corner-shape: scoop;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    background-color: var(--color-base-1300);
-    /* padding: 3rem; */
-    height: 100%;
-    border-radius: 0.75rem;
-    overflow: hidden;
-  }
-  .cta[data-variant="desktop"] > .arrow {
-    --size: 2rem;
-    /* --padding: 1rem 0.5rem; */
-    corner-shape: scoop;
-    /* background: gold; */
-    border-radius: 0.75rem;
-    margin-left: 0.25rem;
-    overflow: hidden;
-  }
-
-  .cta[data-variant="desktop"] > .arrow > .icon {
-    /* background: lime; */
-    --size: 70%;
-  }
-  .text {
-    font-size: var(--size);
-    padding: var(--padding);
-  }
-
-  .cta[data-variant="mobile"] > .text {
-    --size: 2.15rem;
-    --padding: 1.12rem 0 1.12rem 1.75rem;
-  }
-
-  .arrow {
-    align-items: center;
-    aspect-ratio: 1/1;
-    background-color: var(--color-brand-400);
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    transition: 0.15s ease-in-out background-color;
-  }
-
-  .cta:hover > .arrow {
-    background-color: var(--color-support-200);
-  }
-  .icon {
-    --size: 4.45rem;
-    height: var(--size);
-    width: var(--size);
-  }
-  :global(.chevron) {
-    fill: var(--color-base-100);
-    transition: 0.23s ease-in-out fill;
-  }
-
-  .cta:hover > .arrow > .icon > :global(.chevron) {
-    fill: var(--color-base-1000);
+    & > .arrow,
+    & > .text {
+      border-radius: 0.75rem;
+      corner-shape: scoop;
+      flex-shirnk: 0;
+      overflow: hidden;
+    }
+    & > .arrow {
+      margin-left: 0.25rem;
+    }
+    & > .text {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      background-color: var(--label-bg);
+      height: 100%;
+    }
   }
 
   @media (width > 600px) {
-    .cta[data-variant="mobile"] > .text {
-      --size: 2.75rem;
+    .cta[data-variant="mobile"] {
+      --label-size: 2.75rem;
+      --icon-size: 6.25rem;
       --padding: 1.42rem 0 1.42rem 1.75rem;
-    }
-    .cta[data-variant="mobile"] > .icon {
-      --size: 6.25rem;
     }
   }
   @media (width > 1049px) {
     .cta[data-variant="mobile"] {
-      margin-top: unset;
-      margin-left: auto;
       display: none;
-      width: auto;
-    }
-    .cta[data-variant="mobile"] > .text {
-      --size: 1.75rem;
-      --padding: 1.22rem 1rem;
-    }
-    .cta[data-variant="mobile"] > .icon {
-      --size: 1.25rem;
     }
   }
 
   @media (width > 1494px) {
-    .cta[data-variant="desktop"] > .text {
-      --size: 2.4rem;
-      --padding: 0rem 2.85rem;
-      height: 100%;
-    }
-    .cta[data-variant="desktop"] > .arrow {
-      margin-left: 0.35rem;
-    }
-
-    .cta[data-variant="desktop"] > .arrow > .icon {
-      --size: 85%;
+    .cta[data-variant="desktop"] {
+      --label-size: 2.4rem;
+      --height: 5.6rem;
+      --icon-size: 85%;
+      --padding: 0 2.85rem;
     }
   }
 </style>

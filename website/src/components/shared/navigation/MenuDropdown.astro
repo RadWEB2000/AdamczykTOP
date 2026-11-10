@@ -39,23 +39,23 @@ const hoverSupported =
 
 <style>
   .menu-dropdown {
-    --animation:.17s ease-in-out;
-    --background:var(--color-base-200);
+    --animation: 0.17s ease-in-out;
+    --background: var(--color-base-200);
     --dropdown: clamp(10rem, 25vw, 30rem);
-    --gap:5px 0;
-    --padding:1rem 0 0 0;
+    --gap: 5px 0;
+    --padding: 1rem 0 0 0;
     --rows: 0fr;
-    --shadow:0 0 1px 1.5px --transparentColor(var(--color-base-1300), 0.85);
-    --width:100%;
-    width:var(--width);
+    --shadow: 0 0 1px 1.5px --transparentColor(var(--color-base-1300), 0.85);
+    --width: 100%;
+    width: var(--width);
   }
   .dropdown {
     display: grid;
     grid-template-rows: var(--rows);
     overflow: hidden;
     transition: var(--animation) grid-template-rows;
-    &[data-expanded=true]{
-      --rows:1fr;
+    &[data-expanded="true"] {
+      --rows: 1fr;
     }
   }
   .items {
@@ -68,9 +68,9 @@ const hoverSupported =
   }
   @media (width > 1049px) {
     .menu-dropdown {
-      --padding:3rem;
-      --gap:2.8rem 0;
-      --width:fit-content;
+      --padding: 3rem;
+      --gap: 1.8rem 0;
+      --width: fit-content;
       position: static;
     }
     .dropdown {
@@ -86,16 +86,12 @@ const hoverSupported =
       transform: translateY(0.5rem);
       transition:
         var(--animation) opacity,
-        var(--animation) transform,
-        var(--animation) visibility;
-      visibility: hidden;
-      width:var(--dropdown);
+        var(--animation) transform;
+      width: var(--dropdown);
       &[data-expanded="true"] {
         opacity: 1;
         transform: translateY(0);
-        visibility: visible;
       }
     }
-
   }
 </style>

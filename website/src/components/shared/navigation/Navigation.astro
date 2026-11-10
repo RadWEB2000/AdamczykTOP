@@ -32,41 +32,58 @@ const { brand, menu, callToAction } = navigation;
   </div>
 
   <style>
-    .cta {
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: var(--spacing);
-      display: none;
-    }
     .navigation {
+      --animation: 0.25s ease-in-out;
+      --background: var(--color-base-200);
+      --container-columns: minmax(0, 1fr) var(--cta-width);
+      --cta-width: 21rem;
+      --inner-columns: calc(100% - var(--settings-width)) var(--settings-width);
+      --inner-shadow: 0 0 1px 1.5px
+        --transparentColor(var(--color-base-1300), 0.85);
+      --inner-rows: var(--menu-content-height) 0;
+      --menu-content-height: 6.95rem;
+      --nav-top: 0;
+      --nav-width: 100%;
+      --settings-width: 7.5rem;
+      --shadow-nav: 0 0 1px 1.5px var(--color-base-1300);
+      --spacing: 2rem;
       isolation: isolate;
       left: 0;
       position: fixed;
-      top: 0;
-      transition: 0.25s ease-in-out box-shadow;
-      width: 100%;
+      top: var(--nav-top);
+      transition: var(--animation) box-shadow;
+      width: var(--nav-width);
       z-index: 99;
+      &[data-expanded="true"] {
+        --inner-rows: var(--menu-content-height)
+          calc(100vh - var(--menu-content-height));
+      }
+    }
+    .navigation[data-scrolled="true"]:not([data-expanded="true"]) {
+      box-shadow: var(--shadow-nav);
+    }
+    .cta {
+      align-items: center;
+      display: none;
+      justify-content: flex-end;
+      padding-right: var(--spacing);
     }
     .container {
-      --menuHeight: 6.95rem;
       anchor-name: --navigation-container;
-      background-color: var(--color-base-200);
+      background-color: var(--background);
+      display: grid;
       margin: 0 auto;
       overflow: hidden;
       position: relative;
     }
-
     .inner {
-      --settingsWidth: 7.5rem;
-      --spacing: 1rem;
+      background-color: var(--background);
       display: grid;
-      grid-template-columns: calc(100% - var(--settingsWidth)) var(
-          --settingsWidth
-        );
-      grid-template-rows: var(--menuHeight) 0;
-      transition: 0.32s ease-in-out grid-template-rows;
+      grid-template-columns: var(--inner-columns);
+      grid-template-rows: var(--inner-rows);
+      position: relative;
+      transition: var(--animation) grid-template-rows;
     }
-
     .brand,
     .settings {
       align-items: center;
@@ -83,100 +100,63 @@ const { brand, menu, callToAction } = navigation;
       grid-row: 2;
     }
     .settings {
-      justify-content: flex-end;
       grid-column: 2;
       grid-row: 1;
+      justify-content: flex-end;
       padding-right: var(--spacing);
     }
-
-    /* NAVIGATION - OPEN */
-    .navigation[data-expanded="true"] .container > .inner {
-      grid-template-rows: var(--menuHeight) calc(100vh - var(--menuHeight));
-    }
-
-    /* NAVIGATION - SCROLLED */
-    .navigation[data-scrolled="true"]:not([data-expanded="true"]) {
-      box-shadow: 0 0 0 1.5px var(--color-base-900);
-    }
-
     @media (width > 600px) {
-      .inner {
+      .navigation {
         --spacing: 2.5rem;
-      }
-      .container {
-        --menuHeight: 7.25rem;
+        --menu-content-height: 7.25rem;
       }
     }
     @media (width > 1049px) {
       .navigation {
-        z-index: 99;
-        top: 1rem;
-        width: min(1920px, 97%);
+        --inner-columns: 1.5fr 4.5fr;
+        --inner-rows: var(--menu-content-height);
+        --nav-top: 1rem;
+        --nav-width: min(1920px, 97%);
+        --spacing: 3.5rem;
         left: 50%;
         transform: translateX(-50%);
+        &[data-expanded="true"] {
+          --inner-rows: var(--menu-content-height);
+        }
+        &[data-scrolled="true"]:not([data-expanded="true"]) {
+          box-shadow: 0 0 0 1.5px transparent;
+        }
       }
       .cta {
-        --spacing: 2.5rem;
         display: flex;
       }
       .container {
-        /* --menuHeight: 6.95rem; */
-        --ctaWidth: 21rem;
         background-color: transparent;
-        display: grid;
-        grid-template-columns: calc(100% - var(--ctaWidth)) var(--ctaWidth);
-        margin: 0 auto;
+        grid-template-columns: var(--container-columns);
         gap: 0 1rem;
         overflow: visible;
       }
 
       .inner {
-        --settingsWidth: 7.5rem;
-        --spacing: 1.5rem;
-        background-color: var(--color-base-200);
-        grid-template-columns: 1.5fr 4.5fr;
-        grid-template-rows: var(--menuHeight);
-        box-shadow: 0 0 1px 1.5px
-          --transparentColor(var(--color-base-1300), 0.85);
+        box-shadow: var(--inner-shadow);
         border-radius: 1rem;
-        position: relative;
         corner-shape: scoop;
       }
 
-      .brand {
-        grid-column: 1;
-        grid-row: 1;
-      }
       .menu {
         padding-right: var(--spacing);
         grid-column: 2/-1;
         grid-row: 1;
       }
       .settings {
-        grid-column: 3;
-        grid-row: 1;
         display: none;
-      }
-
-      /* NAVIGATION - OPEN */
-      .navigation[data-expanded="true"] .container > .inner {
-        grid-template-rows: var(--menuHeight);
-      }
-
-      /* NAVIGATION - SCROLLED */
-      .navigation[data-scrolled="true"]:not([data-expanded="true"]) {
-        box-shadow: 0 0 0 1.5px transparent;
       }
     }
     @media (width > 1494px) {
       .navigation {
-        width: min(1920px, 97%);
-      }
-      .inner {
+        --nav-width: min(1920px, 97%);
         --spacing: 3.5rem;
-      }
-      .container {
-        --ctaWidth: 27.5rem;
+        --cta-width: 27rem;
       }
     }
   </style>

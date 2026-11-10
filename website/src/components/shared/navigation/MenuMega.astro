@@ -48,21 +48,20 @@ const hoverSupported =
 
 <style>
   .mega {
-    --animation:.17s ease-in-out;
-    --background:var(--color-base-200);
-    --columns:repeat(4,1fr);
-    --gap-grid:1rem 0;
-    --gap-links:.65rem 0;
-    --padding:1rem 0 0 0;
+    --animation: 0.17s ease-in-out;
+    --background: var(--color-base-200);
+    --columns: repeat(4, 1fr);
+    --gap-grid: 1rem 0;
+    --gap-links: 0.65rem 0;
+    --padding: 1rem 0 0 0;
     --rows: 0fr;
-    --shadow:0 0 1px 1.5px --transparentColor(var(--color-base-1300), 0.85);
+    --shadow: 0 0 1px 1.5px --transparentColor(var(--color-base-1300), 0.85);
     width: 100%;
   }
   .panel {
     display: grid;
     grid-template-rows: var(--rows);
-    transition:
-      var(--animation) grid-template-rows;
+    transition: var(--animation) grid-template-rows;
     &[data-expanded="true"] {
       --rows: 1fr;
     }
@@ -86,9 +85,9 @@ const hoverSupported =
   }
   @media (width > 1049px) {
     .mega {
-      --gap-grid:3rem;
-      --gap-links:.85rem 0;
-      --padding:3rem;
+      --gap-grid: 3rem;
+      --gap-links: 0.85rem 0;
+      --padding: 3rem;
       position: static;
       width: fit-content;
     }
@@ -96,7 +95,7 @@ const hoverSupported =
     .panel {
       background: var(--background);
       border-radius: 1rem;
-      box-shadow:var(--shadow);
+      box-shadow: var(--shadow);
       corner-shape: scoop;
       display: block;
       left: 0;
@@ -104,18 +103,15 @@ const hoverSupported =
       position: absolute;
       right: 0;
       top: 100%;
-      transform: translateY(0.5rem) ;
+      transform: translateY(0.5rem);
       transition:
         var(--animation) opacity,
-        var(--animation) transform,
-        var(--animation) visibility;
-      visibility: hidden;
+        var(--animation) transform;
       z-index: 999;
       width: 100%;
       &[data-expanded="true"] {
         opacity: 1;
         transform: translateY(0);
-        visibility: visible;
       }
     }
 

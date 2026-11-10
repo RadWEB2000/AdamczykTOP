@@ -9,28 +9,24 @@ interface Props {
 const { brand, uri } = Astro.props;
 ---
 
-<a
-  @click="$store.navigation.close()"
-  class="brand"
-  href={uri}
->
+<a @click="$store.navigation.close()" class="brand" href={uri}>
   <Logo class="logo" />
   <span class="title">Adamczyk<span class="special">TOP</span></span>
 </a>
 
 <style>
   .brand {
-    --color:var(--color-base-1300);
-    --gap:3.5px;
-    --logo:min(3.25rem,4.15rem);
-    --title:clamp(2.35rem,calc(1.65rem + 1.2vw), 3.45rem);
-    --special:var(--color-base-1300);
+    --color: var(--color-base-1300);
+    --gap: 3.5px;
+    --logo: min(3.25rem, 4.15rem);
+    --title: clamp(2.35rem, calc(1.65rem + 1.2vw), 3.45rem);
+    --special: var(--color-base-1300);
     align-items: center;
     display: inline-flex;
     gap: var(--gap);
     &:hover,
     &:focus {
-      --special:var(--color-brand-400);
+      --special: var(--color-brand-400);
     }
   }
 
@@ -41,14 +37,11 @@ const { brand, uri } = Astro.props;
   }
   .title {
     color: var(--color);
-    font: 900  var(--title) / 1 var(--font-display);
-    /* font-family: var(--font-display); */
-    /* font-size: var(--title); */
-    /* font-weight: 900; */
+    font: 900 var(--title) / 1 var(--font-display);
     letter-spacing: 1.5px;
   }
   .special {
-    color:var(--special);
-    transition:.2s ease-in-out color;
+    color: var(--special);
+    transition: 0.2s ease-in-out color;
   }
 </style>

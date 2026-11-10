@@ -22,117 +22,80 @@ const { label, uri, description, variant = "main" } = Astro.props;
 
 <style>
   .menu-item {
-    --description: 1.23rem;
+    --animation: 0.25s ease-in-out;
+    --label-size: 1.45rem;
+    --label-color: var(--color-base-1200);
+    --label-weight: 700;
+    --description-size: clamp(1.23rem, calc(0.9vw + 1.1rem), 1.75rem);
+    --description-color: var(--color-base-1000);
+    --description-weight: 500;
+    --gap: 0.55rem;
+    --spacing: 0.45rem;
     color: var(--color-base-1200);
     cursor: pointer;
-    display: block;
     font-family: var(--font-headings);
     text-transform: uppercase;
+    &,
     & > * {
       display: block;
     }
     & > .label {
-      font-size: var(--label);
-      font-weight: var(--weight);
+      font: var(--label-weight) var(--label-size) / 1 var(--font-headings);
+      transition: var(--animation) color;
     }
     & > .description {
       color: var(--color-base-1000);
-      font-size: var(--description);
-      font-weight: 500;
-      margin-top: 0.45rem;
+      font: var(--description-weight) var(--description-size) / 1
+        var(--font-headings);
+      margin-top: var(--spacing);
       text-wrap: balance;
       width: min(100%, 35ch);
     }
+
+    &:hover {
+      & > .label {
+        color: var(--color-brand-500);
+      }
+    }
   }
   .menu-item[data-variant="main"] {
-    --label: 2.32rem;
-    --weight: 700;
+    --label-size: clamp(2.32rem, calc(1.8rem + 2.1vw), 3.15rem);
   }
   .menu-item[data-variant="mega"] {
-    --label: 1.52rem;
-    --weight: 700;
-    margin-bottom: 0.55rem;
+    --label-size: clamp(1.82rem, calc(1.1vw + 1.1rem), 2.95rem);
+    margin-bottom: var(--gap);
   }
   .menu-item[data-variant="mega-item"] {
-    --label: 1.45rem;
-    --weight: 300;
+    --label-size: clamp(1.65rem, calc(0.57vw + 1.21rem), 1.75rem);
+    --label-weight: 400;
   }
   .menu-item[data-variant="dropdown"] {
-    --label: 1.45rem;
-    --weight: 700;
+    --label-size: clamp(1.85rem, calc(1.6vw + 0.78rem), 2.65rem);
   }
 
   @media (width > 599px) {
-    .menu-item[data-variant="main"] {
-      --label: 2.75rem;
-      --weight: 700;
-    }
     .menu-item[data-variant="mega"] {
-      --label: 2rem;
-      --description: 1.5rem;
-    }
-    .menu-item[data-variant="mega-item"] {
-      --label: 1.65rem;
-      --weight: 300;
-    }
-    .menu-item[data-variant="dropdown"] {
-      --label: 2rem;
-      --description: 1.55rem;
-    }
-  }
-  @media (width > 599px) {
-    .menu-item[data-variant="mega"] {
-      margin-bottom: 1.25rem;
-      .description {
-        margin-top: 0.85rem;
-      }
+      --gap: 1.25rem;
+      --spacing: 0.85rem;
     }
   }
   @media (width > 1049px) {
+    .menu-item {
+      --description-size: clamp(1.2rem, calc(0.15rem + 1vw), 1.65rem);
+    }
     .menu-item[data-variant="main"] {
-      --label: 1.62rem;
-      --weight: 700;
+      --label-size: clamp(1.62rem, calc(0.67rem + 0.9vw), 2.1rem);
     }
     .menu-item[data-variant="mega"] {
-      --label: 1.55rem;
-      --description: 1.2rem;
-      margin-bottom: 1.5rem;
-      .description {
-        margin-top: 1rem;
-      }
+      --label-size: clamp(1.55rem, calc(0.29rem + 1.2vw), 2.15rem);
+      --gap: 1.5rem;
+      --spacing: 1rem;
     }
     .menu-item[data-variant="mega-item"] {
-      --label: 1.25rem;
+      --label-size: clamp(1.25rem, calc(0.63rem + 0.6vw), 1.55rem);
     }
     .menu-item[data-variant="dropdown"] {
-      --label: 2rem;
-      --description: 1.55rem;
-    }
-  }
-
-  @media (width > 1224px) {
-    .menu-item[data-variant="main"] {
-      --label: 1.7rem;
-      --weight: 700;
-    }
-    .menu-item[data-variant="mega"] {
-      --label: 1.75rem;
-      --description: 1.45rem;
-    }
-    .menu-item[data-variant="mega-item"] {
-      --label: 1.5rem;
-    }
-  }
-  @media (width > 1494px) {
-    .menu-item[data-variant="main"] {
-      --label: 1.97rem;
-    }
-    .menu-item[data-variant="mega"] {
-      --label: 2.15rem;
-      --description: 1.65rem;
-    }
-    .menu-item[data-variant="mega-item"] {
-      --label: 1.55rem;
+      --label-size: clamp(1.85rem, calc(1.6vw + 0.78rem), 2.1rem);
     }
   }
 </style>
