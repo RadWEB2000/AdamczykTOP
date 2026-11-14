@@ -1,61 +1,68 @@
 <button
-  :aria-expanded="$store.navigation.open"
-  :aria-label="$store.navigation.open ? 'Zamknij menu' : 'Otwórz menu'"
-  :data-open-menu="$store.navigation.open"
+  :aria-expanded="$store.navigation.isOpen"
+  :aria-label="$store.navigation.isOpen ? 'Zamknij menu' : 'Otwórz menu'"
+  :data-expanded="$store.navigation.isOpen"
   @click="$store.navigation.toggle()"
   class="menu-button"
+  type="button"
 >
-  <span class="line"></span>
-  <span class="line"></span>
+  <span aria-hidden="true" class="line"></span>
+  <span aria-hidden="true" class="line"></span>
 </button>
 
 <style>
   .menu-button {
     --color:var(--color-neutral-800);
     --line:4px;
-    --size: 4.45rem;
+    --padding:.15rem;
+    --radius:2px;
+    --size:4.45rem;
+    --scale:1;
+    --rotate:0deg;
+    --rotate-first:var(--rotate);
+    --rotate-last:var(--rotate);
+    --translate:150%;
+    --translate-first:calc(var(--translate) * -1);
+    --translate-last:var(--translate);
+    align-items: center;
+    cursor: pointer;
     display: flex;
-    flex-flow: column;
     flex-shrink: 0;
     height: var(--size);
     justify-content: space-evenly;
-    /* overflow: hidden; */
-    padding: 0.15rem;
+    padding: var(--padding);
     position: relative;
+    transform:scale(var(--scale));
     transition: var(--easing) transform;
     width: var(--size);
-    
     &:active {
-      transform: scale(0.95);
+      --scale:.95;
+    }
+    &[data-expanded=true]{
+      --rotate-first:45deg;
+      --rotate-last:-45deg;
+      --translate-first:0%;
+      --translate-last:0%;
+    }
+    & > .line {
+      background-color: var(--color);
+      border-radius: var(--radius);
+      display: block;
+      height: var(--line);
+      left: 1.5px;
+      position: absolute;
+      right: 1.5px;
+      top: 50%;
+      transform-origin: center;
+      transition:var(--easing) background-color,var(--easing) transform;
+      &:first-of-type {
+        transform: translateY(calc(-50% + var(--translate-first))) rotate(var(--rotate-first));
+      }
+      &:last-of-type {
+        transform: translateY(calc(-50% + var(--translate-last))) rotate(var(--rotate-last));
+      }
     }
   }
-
-
-  .line {
-    background-color: var(--color);
-    border-radius: 2px;
-    display: block;
-    height: var(--line);
-    transform-origin: center;
-    transition:
-      var(--easing) transform,
-      var(--easing) background-color;
-    width: 100%;
-  }
-
-  .menu-button[data-open-menu=true] > .line {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-  }
-
-  .menu-button[data-open-menu="true"] > .line:nth-of-type(1) {
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-  .menu-button[data-open-menu="true"] > .line:nth-of-type(2) {
-    transform: translate(-50%, -50%) rotate(-45deg);
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .line ,
     .menu-button {
