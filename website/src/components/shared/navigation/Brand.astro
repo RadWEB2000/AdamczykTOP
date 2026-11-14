@@ -16,32 +16,23 @@ const { brand, uri } = Astro.props;
 
 <style>
   .brand {
-    --color: var(--color-base-1300);
-    --gap: 3.5px;
-    --logo: min(3.25rem, 4.15rem);
-    --title: clamp(2.35rem, calc(1.65rem + 1.2vw), 3.45rem);
-    --special: var(--color-base-1300);
+    --label-size:clamp(2rem, calc(2.2rem + 1.85vw), 3.25rem);
+    --logo-size:clamp(2rem, calc(2.2rem + 1.85vw), 3.25rem);
+    --special:var(--color-brand-400);
     align-items: center;
-    display: inline-flex;
-    gap: var(--gap);
-    &:hover,
-    &:focus {
-      --special: var(--color-brand-400);
-    }
+    display: flex;
+    justify-content: flex-start;
   }
-
   .logo {
-    flex-shrink: 0;
-    height: var(--logo);
-    width: var(--logo);
+    height: var(--logo-size);
+    width: var(--logo-size);
   }
   .title {
-    color: var(--color);
-    font: 900 var(--title) / 1 var(--font-display);
-    letter-spacing: 1.5px;
+    font-size: var(--label-size);
+    font-family: var(--font-display);
+    font-weight: 800;
   }
   .special {
-    color: var(--special);
-    transition: 0.2s ease-in-out color;
+    color:var(--special);
   }
 </style>

@@ -2,6 +2,7 @@
 import { Font } from "astro:assets";
 import "@css/global.css";
 import Navigation from "@shared/navigation/Navigation.astro";
+import { ClientRouter, slide } from "astro:transitions";
 
 type Props = {
   meta: {
@@ -23,8 +24,9 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 ---
 
-<html lang="pl">
+<html lang="pl" transition:animate="none">
   <head>
+    <ClientRouter />
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
@@ -34,9 +36,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
-    <Font cssVariable="--font-legend-bold" preload />
+    <Font cssVariable="--font-golos" preload />
     <Font cssVariable="--font-outfit" />
-    <Font cssVariable="--font-dm-sans" />
   </head>
   <body>
     <Navigation />

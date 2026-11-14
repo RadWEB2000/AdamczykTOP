@@ -11,19 +11,18 @@
 
 <style>
   .menu-button {
-    --animate:.2s ease-in-out;
-    --color:var(--color-base-1000);
+    --color:var(--color-neutral-800);
     --line:4px;
-    --size: 3.45rem;
+    --size: 4.45rem;
     display: flex;
     flex-flow: column;
     flex-shrink: 0;
     height: var(--size);
     justify-content: space-evenly;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 0.15rem;
     position: relative;
-    transition: var(--animate) transform;
+    transition: var(--easing) transform;
     width: var(--size);
     
     &:active {
@@ -39,8 +38,8 @@
     height: var(--line);
     transform-origin: center;
     transition:
-      var(--animate) transform,
-      var(--animate) background-color;
+      var(--easing) transform,
+      var(--easing) background-color;
     width: 100%;
   }
 

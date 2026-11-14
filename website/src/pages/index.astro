@@ -1,5 +1,6 @@
 ---
-import BaseLayout from "../components/shared/layouts/BaseLayout.astro";
+import { Hero } from "@views/home-page";
+import BaseLayout from "@shared/layouts/BaseLayout.astro";
 
 const seo = {
   meta: {
@@ -11,13 +12,12 @@ const seo = {
 ---
 
 <BaseLayout {...seo}>
-  <header
-    style="min-height:94.5vh;background-color:var(--color-brand-600);padding-top:11.85rem;padding-left:2rem;padding-right: 2rem;"
-  >
-    <h1 style="color:var(--color-base-100)">Astro</h1>
-  </header>
+  <!-- <Hero /> -->
   <main>
     <ul>
+      <div class="square">
+        asd
+      </div>
       <li>001</li>
       <li>002</li>
       <li>003</li>
@@ -266,3 +266,7 @@ const seo = {
     </ul>
   </main>
 </BaseLayout>
+<style>
+  .square {
+  }
+</style>

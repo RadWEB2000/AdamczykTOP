@@ -1,32 +1,31 @@
 @layer colors {
-    :root{
-        /* COLOR - BRAND */
-        --color-brand-100: oklch(91% 0.045 278);
-        --color-brand-200: oklch(74.228% 0.13438 277.925);
-        --color-brand-300: oklch(57.727% 0.22965 275.152);
-        --color-brand-400: oklch(49.068% 0.26354 263.993);
-        --color-brand-500: oklch(32% 0.17 264);
-        --color-brand-600: oklch(14.926% 0.09046 264.164);
-        --color-brand-700: oklch(13.697% 0.0246 287.483);
-        /* COLOR - SUPPORT */
-        --color-support-100: oklch(93.06% 0.15526 118.002);
-        --color-support-200: oklch(93.06% 0.15526 118.002);
-        --color-support-300: oklch(89.623% 0.17764 122.607);
-        /* COLOR - BASE */
-        --color-base-100: oklch(100% 0.00011 271.152);
-        --color-base-200: oklch(97.9% 0.00011 271.152);
-        --color-base-300: oklch(95.815% 0.00011 271.152);
-        --color-base-400: oklch(94.007% 0.00011 271.152);
-        --color-base-500: oklch(91.357% 0.00106 11.782);
-        --color-base-600: oklch(78% 0.00008 271.152);
-        --color-base-700: oklch(64.673% 0.00007 271.152);
-        --color-base-800: oklch(58.632% 0.00007 271.152);
-        --color-base-900: oklch(47% 0.00005 271.152);
-        --color-base-1000: oklch(35.618% 0.00004 271.152);
-        --color-base-1100: oklch(29.5% 0.00004 271.152);
-        --color-base-1200: oklch(23.503% 0.00003 271.152);
-        --color-base-1300: oklch(16% 0.00002 271.152);
-        --color-base-1400: oklch(8% 0.00001 271.152);
-        --color-base-1500: oklch(0% 0 0);
-    }
+  :root {
+
+    --color-neutral-100: #F8F8F8;
+    --color-neutral-200: #F1F1F1;
+    --color-neutral-300: #DEDDDE;
+    --color-neutral-400: #CBCACC;
+    --color-neutral-500: #A2A7AA;
+    --color-neutral-600: #5D5C5D;
+    --color-neutral-700: #4F4E4E;
+    --color-neutral-800: #333333;
+    --color-neutral-900: #262626;
+    --color-neutral-1000: #1F1F1F;
+    --color-neutral-1100: #191919;
+    --color-neutral-1200: #0A0A0A;
+    --color-neutral-1300: #000000;
+      
+    --color-brand-100: #CCCCFF;
+    --color-brand-200: #7081FE;
+    --color-brand-300: #0537D0;
+    --color-brand-400: #022599;
+    --color-brand-500: #011563;
+    --color-brand-600: #02044E;
+    --color-brand-700: #060528;
+      
+    --color-accent-100: #FD431C;
+    --color-accent-200: #F63D16;
+    --color-accent-300: #C52328;
+
+  }
 }

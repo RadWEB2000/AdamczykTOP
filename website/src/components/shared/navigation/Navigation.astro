@@ -6,11 +6,19 @@ const { brand, menu, callToAction } = navigation;
 ---
 
 <div
-  x-data
-  class="navigation"
-  :data-expanded="$store.navigation.open"
-  :data-scrolled="$store.navigation.scrolled"
+x-data
+class="navigation"
+:data-expanded="$store.navigation.open"
+:data-scrolled="$store.navigation.scrolled"
+transition:persist="main-navigation"
 >
+<!-- <div
+x-data
+class="navigation"
+:data-expanded="true"
+:data-scrolled="$store.navigation.scrolled"
+transition:persist="main-navigation"
+> -->
   <div x-data class="container" :data-expanded="true">
     <nav class="inner">
       <div class="brand">
@@ -18,8 +26,8 @@ const { brand, menu, callToAction } = navigation;
       </div>
       <div class="menu">
         <Menu
-          menu={[...menu].sort((a, b) => a.order - b.order)}
-          callToAction={callToAction}
+        menu={[...menu].sort((a, b) => a.order - b.order)}
+        callToAction={callToAction}
         />
       </div>
       <div class="settings">
@@ -30,134 +38,143 @@ const { brand, menu, callToAction } = navigation;
       <CallToAction {...callToAction} variant="desktop" />
     </div>
   </div>
+</div>
+<style>
+  .navigation {
+    --cta-visibility:hidden;
+    /* --container-width:min(1900px,92vw); */
+    --container-width:100%;
+    --inner-columns:minmax(0,1fr) 10rem;
+    --inner-header-height:7.77rem;
+    /* --inner-rows:5rem 0; */
+    --spacing:1.75rem;
+    background-color:var(--color-neutral-200);
+    position: fixed;
+    top: 0;
+left: 0;
+    transition: var(--easing) background-color;
+    width: 100%;
 
-  <style>
-    .navigation {
-      --animation: 0.25s ease-in-out;
-      --background: var(--color-base-200);
-      --container-columns: minmax(0, 1fr) var(--cta-width);
-      --cta-width: 21rem;
-      --inner-columns: calc(100% - var(--settings-width)) var(--settings-width);
-      --inner-shadow: 0 0 1px 1.5px
-        --transparentColor(var(--color-base-1300), 0.85);
-      --inner-rows: var(--menu-content-height) 0;
-      --menu-content-height: 6.95rem;
-      --nav-top: 0;
-      --nav-width: 100%;
-      --settings-width: 7.5rem;
-      --shadow-nav: 0 0 1px 1.5px var(--color-base-1300);
-      --spacing: 2rem;
-      isolation: isolate;
-      left: 0;
-      position: fixed;
-      top: var(--nav-top);
-      transition: var(--animation) box-shadow;
-      width: var(--nav-width);
-      z-index: 99;
-      &[data-expanded="true"] {
-        --inner-rows: var(--menu-content-height)
-          calc(100vh - var(--menu-content-height));
+    &[data-expanded=true]{
+      background-color: color-mix(in srgb, var(--color-neutral-100) 50%,var(--color-neutral-300));
+      .inner {
+        grid-template-rows:var(--inner-header-height) calc(100vh - var(--inner-header-height));
       }
     }
-    .navigation[data-scrolled="true"]:not([data-expanded="true"]) {
-      box-shadow: var(--shadow-nav);
+  }
+  .container {
+    /* background: orange; */
+    margin:0 auto;
+    width: var(--container-width);
+  }
+  .cta {
+    align-items: center;
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+    display: none;
+      min-inline-size: 0;
+  min-block-size: 0;
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: var(--inner-columns);
+    grid-template-rows: var(--inner-header-height) 0;
+    transition:var(--easing) grid-template-rows;
+    width: 100%;
+    overflow-y: hidden;
+  }
+  .brand,
+  .settings {
+    align-items: center;
+    display: flex;
+    grid-row: 1;
+  }
+
+  .brand {
+    justify-content: flex-start;
+    /* background: white; */
+    grid-column: 1;
+    padding-left: var(--spacing);
+  }
+  .settings {
+    /* background: red; */
+    justify-content: flex-end;
+    grid-column: 2;
+    padding-right: var(--spacing);
+  }
+  .menu {
+    /* background: aqua; */
+    height: 100%;
+    grid-column: 1/-1;
+      min-block-size: 0;
+  min-inline-size: 0;
+    grid-row: 2;
+    overflow: hidden;
+  }
+
+  @media (width >= 1100px){
+    .navigation {
+      --inner-header-height:9rem;
+      --inner-columns:20rem 1fr ;
+      --container-width:min(1900px,99vw);
+      background-color: transparent;
+      top:1rem;
+          left: 50%;
+    transform: translateX(-50%);
+      &[data-expanded=true]{
+        background-color: transparent;
+        .inner {
+          grid-template-rows:var(--inner-header-height) 0;
+        }
+      }
     }
     .cta {
-      align-items: center;
-      display: none;
-      justify-content: flex-end;
-      padding-right: var(--spacing);
+      display: flex;
+      padding:0 calc(var(--spacing) / 3);
     }
     .container {
-      anchor-name: --navigation-container;
-      background-color: var(--background);
       display: grid;
-      margin: 0 auto;
-      overflow: hidden;
+      gap:0 1rem;
+      background-color: transparent;
+      grid-template-rows: var(--inner-header-height);
+      grid-template-columns: minmax(0,1fr) 15rem;
       position: relative;
+    }
+    .settings {
+      /* background: green; */
+      display: none;
     }
     .inner {
-      background-color: var(--background);
-      display: grid;
-      grid-template-columns: var(--inner-columns);
-      grid-template-rows: var(--inner-rows);
+      background: var(--color-neutral-200);
+      border-radius: 2rem;
+      padding: 0rem 2rem;
+      grid-template-rows:var(--inner-header-height) 0;
       position: relative;
-      transition: var(--animation) grid-template-rows;
-    }
-    .brand,
-    .settings {
-      align-items: center;
-      display: flex;
-    }
-    .brand {
-      grid-column: 1;
-      grid-row: 1;
-      justify-content: flex-start;
-      padding-left: var(--spacing);
+      overflow: visible;
     }
     .menu {
-      grid-column: 1/-1;
-      grid-row: 2;
-    }
-    .settings {
+      overflow: visible;
+      padding-right: var(--spacing);
       grid-column: 2;
       grid-row: 1;
-      justify-content: flex-end;
-      padding-right: var(--spacing);
     }
-    @media (width > 600px) {
-      .navigation {
-        --spacing: 2.5rem;
-        --menu-content-height: 7.25rem;
-      }
+  }
+
+  @media (width >= 1600px){
+    .navigation {
+      --inner-header-height:7.5rem;
+      --inner-columns:40rem 1fr ;
+      --container-width:min(1900px,95vw);
+      --spacing:1.75rem;
     }
-    @media (width > 1049px) {
-      .navigation {
-        --inner-columns: 1.5fr 4.5fr;
-        --inner-rows: var(--menu-content-height);
-        --nav-top: 1rem;
-        --nav-width: min(1920px, 97%);
-        --spacing: 3.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        &[data-expanded="true"] {
-          --inner-rows: var(--menu-content-height);
-        }
-        &[data-scrolled="true"]:not([data-expanded="true"]) {
-          box-shadow: 0 0 0 1.5px transparent;
-        }
-      }
-      .cta {
-        display: flex;
-      }
+    .brand {
+      /* background: orangered; */
+    }
       .container {
-        background-color: transparent;
-        grid-template-columns: var(--container-columns);
-        gap: 0 1rem;
-        overflow: visible;
-      }
-
-      .inner {
-        box-shadow: var(--inner-shadow);
-        border-radius: 1rem;
-        corner-shape: scoop;
-      }
-
-      .menu {
-        padding-right: var(--spacing);
-        grid-column: 2/-1;
-        grid-row: 1;
-      }
-      .settings {
-        display: none;
-      }
+      grid-template-columns: minmax(0,1fr) 25rem;
     }
-    @media (width > 1494px) {
-      .navigation {
-        --nav-width: min(1920px, 97%);
-        --spacing: 3.5rem;
-        --cta-width: 27rem;
-      }
     }
-  </style>
-</div>
+</style>

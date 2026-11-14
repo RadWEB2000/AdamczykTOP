@@ -1,0 +1,86 @@
+---
+import me from "@img/me/suit-05.webp";
+import { Image } from "astro:assets";
+---
+
+<header class="hero">
+  <div class="container">
+    <section class="content">
+      <hgroup class="headings">
+        <h1 class="title">AdamczykTOP</h1>
+        <h2 class="subtitle">Twoja widoczność to moja specjalność.</h2>
+      </hgroup>
+      <strong class="slogan">
+        Pomagam firmom budować widoczność w Google dzięki analizie strategii i
+        skutecznej optymalizacji SEO.
+      </strong>
+    </section>
+    <figure class="image">
+      <img
+        alt="Radosław Adamczyk - Specjalista SEO"
+        src={me.src}
+        width={me.width}
+        height={me.height}
+        loading="eager"
+      />
+    </figure>
+  </div>
+</header>
+
+<style>
+  .hero {
+    --gradient: linear-gradient(
+      to bottom right,
+      color-mix(in srgb, var(--color-brand-400) 15%, var(--color-brand-500)),
+      color-mix(in srgb, var(--color-brand-500), var(--color-brand-600))
+    );
+    /* background-color: var(--color-brand-500); */
+    background-image: var(--gradient);
+    color: var(--color-base-100);
+  }
+  .container {
+    /* display: grid; */
+    /* grid-template-columns: repeat(1, 1fr); */
+  }
+
+  .title {
+    font-size: 2.35rem;
+  }
+
+  .subtitle {
+    color: var(--color-brand-100);
+    font-size: 3.35rem;
+    text-wrap: balance;
+    line-height: 1;
+  }
+
+  .slogan {
+    display: block;
+    font-size: 2rem;
+    text-wrap: pretty;
+    font-weight: 400;
+    margin-top: 2rem;
+  }
+
+  .content {
+    padding: 10.85rem 2rem 5rem;
+    /* min-height: 97vh; */
+  }
+
+  .image {
+    background: lime;
+    display: flex;
+    align-items: end;
+    justify-content: flex-end;
+    width: 100%;
+    position: relative;
+    & > img {
+      /* position: absolute; */
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      transform-origin: bottom;
+      /* transform: scale(0.89); */
+    }
+  }
+</style>

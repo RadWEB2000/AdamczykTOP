@@ -7,7 +7,7 @@ interface Props extends CallToAction {
 const { label, uri, variant } = Astro.props;
 ---
 
-<a class="cta" data-variant={variant} href={uri}>
+<a class="cta" data-variant={variant} href={uri} @click="$store.navigation.close()" >
   <span class="text">{label}</span>
   <span aria-hidden="true" class="arrow">
     <ArrowRight class="icon" />
@@ -15,103 +15,95 @@ const { label, uri, variant } = Astro.props;
 </a>
 
 <style>
-  .cta {
-    --animation: 0.25s ease-in-out;
-    --label-bg: var(--color-base-1300);
-    --label-color: var(--color-base-200);
-    --label-size: 2.15rem;
-    --icon-size: 4.45rem;
-    --icon-bg: var(--color-brand-400);
-    --icon-bg-hover: var(--color-support-200);
-    --padding: 1.12rem 0 1.12rem 1.75rem;
-    --margin: auto;
-    --height: 5rem;
-    align-items: center;
-    display: inline-flex;
-    justify-content: space-between;
-    margin: var(--margin);
+
+.cta {
+  --arrow-bg:var(--color-brand-500);
+  --arrow-color:var(--color-neutral-100);
+  --arrow-rounded:0 var(--rounded) var(--rounded) 0;
+  --arrow-size:calc( calc(var(--label-pad-y) * 2) + var(--label-size) );
+  --gap:0 1rem;
+  --chevron-size:55%;
+  --label-bg:var(--color-neutral-100);
+  --label-color:var(--color-neutral-1100);
+  --label-size:2rem;
+  --label-pad:var(--label-pad-y) 0 var(--label-pad-y) var(--label-pad-x);
+  --label-pad-x:3rem;
+  --label-pad-y:2rem;
+  --label-rounded:var(--rounded) 0 0 var(--rounded);
+  --rounded:1rem;
+  flex-flow:row nowrap;
+  gap:var(--gap);
+  justify-content: flex-end;
+  transition:var(--easing) gap;
+  &:is(:hover,:focus-visible,:focus,:focus-within){
+    --gap:0rem;
+    --arrow-bg:var(--color-accent-100);
     & > .arrow {
-      align-items: center;
-      aspect-ratio: 1;
-      background-color: var(--icon-bg);
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      transition: var(--animation) background-color;
-      & > .icon {
-        height: var(--icon-size);
-        width: var(--icon-size);
-      }
+      border-radius: var(--arrow-rounded);
     }
     & > .text {
-      color: var(--label-color);
-      font: 700 var(--label-size) / 1 var(--font-headings);
-      padding: var(--padding);
-      text-transform: uppercase;
-    }
-    &:hover > .arrow {
-      background-color: var(--icon-bg-hover);
-    }
-    &:hover > .arrow > .icon > :global(.chevron) {
-      fill: var(--color-base-1000);
+      border-radius: var(--label-rounded);
     }
   }
-
-  :global(.chevron) {
-    fill: var(--color-base-100);
-    transition: var(--animation) fill;
+  &,
+  & > * {
+    align-items: center;
+    display: flex;
   }
-
-  .cta[data-variant="mobile"] {
-    --margin: auto auto 0 auto;
-    background-color: var(--label-bg);
+  &,
+  & > .text {
     width: 100%;
   }
-  .cta[data-variant="desktop"] {
-    --label-size: 2rem;
-    --icon-size: 70%;
-    --padding: 0 1.5rem;
-    --margin: auto unset;
-    height: var(--height);
-    max-width: 100%;
-    & > .arrow,
-    & > .text {
-      border-radius: 0.75rem;
-      corner-shape: scoop;
-      flex-shirnk: 0;
-      overflow: hidden;
-    }
-    & > .arrow {
-      margin-left: 0.25rem;
-    }
-    & > .text {
-      align-items: center;
+  :global(.chevron) {
+    fill: var(--arrow-color);
+    height: var(--chevron-size);
+    margin:auto;
+    width: var(--chevron-size) ;
+  }
+  & > .text {
+    background-color: var(--label-bg);
+    border-radius: var(--rounded);
+    color: var(--label-color);
+    font-family: var(--font-display);
+    font-size: var(--label-size);
+    font-weight: 800;
+    height: 100%;
+    justify-content: flex-start;
+    padding:var(--label-pad);
+    text-transform: uppercase;
+    transition: var(--easing) border-radius;
+  }
+  & > .arrow {
+    background-color: var(--arrow-bg);
+    border-radius: var(--rounded);
+    height: var(--arrow-size);
+    justify-content: center;
+    transition:var(--easing) background-color, var(--easing) border-radius;
+    width: var(--arrow-size);
+    & >* {
+      align-items: center; 
       display: flex;
-      justify-content: center;
-      background-color: var(--label-bg);
       height: 100%;
+      justify-content: center;
+      transform: scale(.8);
     }
   }
-
-  @media (width > 600px) {
-    .cta[data-variant="mobile"] {
-      --label-size: 2.75rem;
-      --icon-size: 6.25rem;
-      --padding: 1.42rem 0 1.42rem 1.75rem;
-    }
-  }
-  @media (width > 1049px) {
+}
+.cta[data-variant="mobile"]{
+  --label-size:2.5rem;
+  --label-pad-x:2rem;
+  margin-top: 5rem;
+}
+.cta[data-variant="desktop"]{
+  --label-bg:var(--color-neutral-1100);
+  --label-color:var(--color-neutral-100);
+  --label-size:1.9rem;
+  --label-pad-x:2rem;
+}
+ @media (width >= 1100px){  
     .cta[data-variant="mobile"] {
       display: none;
     }
-  }
-
-  @media (width > 1494px) {
-    .cta[data-variant="desktop"] {
-      --label-size: 2.4rem;
-      --height: 5.6rem;
-      --icon-size: 85%;
-      --padding: 0 2.85rem;
-    }
-  }
+    
+ }
 </style>

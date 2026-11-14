@@ -3,7 +3,7 @@ interface Props {
   label: string;
   uri: string;
   description?: string;
-  variant: "main" | "mega" | "mega-item" | "dropdown";
+  variant: "main"| "main-toggle" | "mega" | "mega-item" | "dropdown";
 }
 const { label, uri, description, variant = "main" } = Astro.props;
 ---
@@ -21,81 +21,94 @@ const { label, uri, description, variant = "main" } = Astro.props;
 </a>
 
 <style>
+  .menu-item,
+  .menu-item > * {
+    display: block;
+  }
+
   .menu-item {
-    --animation: 0.25s ease-in-out;
-    --label-size: 1.45rem;
-    --label-color: var(--color-base-1200);
-    --label-weight: 700;
-    --description-size: clamp(1.23rem, calc(0.9vw + 1.1rem), 1.75rem);
-    --description-color: var(--color-base-1000);
-    --description-weight: 500;
-    --gap: 0.55rem;
-    --spacing: 0.45rem;
-    color: var(--color-base-1200);
-    cursor: pointer;
-    font-family: var(--font-headings);
-    text-transform: uppercase;
-    &,
-    & > * {
-      display: block;
-    }
-    & > .label {
-      font: var(--label-weight) var(--label-size) / 1 var(--font-headings);
-      transition: var(--animation) color;
-    }
-    & > .description {
-      color: var(--color-base-1000);
-      font: var(--description-weight) var(--description-size) / 1
-        var(--font-headings);
-      margin-top: var(--spacing);
-      text-wrap: balance;
-      width: min(100%, 35ch);
-    }
-
-    &:hover {
-      & > .label {
-        color: var(--color-brand-500);
-      }
-    }
+    font-family: var(--font-display);
   }
+
   .menu-item[data-variant="main"] {
-    --label-size: clamp(2.32rem, calc(1.8rem + 2.1vw), 3.15rem);
-  }
-  .menu-item[data-variant="mega"] {
-    --label-size: clamp(1.82rem, calc(1.1vw + 1.1rem), 2.95rem);
-    margin-bottom: var(--gap);
-  }
-  .menu-item[data-variant="mega-item"] {
-    --label-size: clamp(1.65rem, calc(0.57vw + 1.21rem), 1.75rem);
-    --label-weight: 400;
-  }
-  .menu-item[data-variant="dropdown"] {
-    --label-size: clamp(1.85rem, calc(1.6vw + 0.78rem), 2.65rem);
+    /* background: orange; */
+    width: 100%;
+    border-bottom: 1px solid --transparentColor(var(--color-neutral-900),.25);
+    
   }
 
-  @media (width > 599px) {
-    .menu-item[data-variant="mega"] {
-      --gap: 1.25rem;
-      --spacing: 0.85rem;
+  .menu-item[data-variant="main"],
+  .menu-item[data-variant="main-toggle"]{
+    --label-size:clamp(2rem, calc(2rem + 1.8vw), 3.5rem);
+    color:var(--color-neutral-900);
+    padding: 1.5rem .75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: var(--label-size);
+  }
+
+  .menu-item[data-variant="mega"]{
+    --label-size:clamp(1.75rem, calc(1.65rem + 1.8vw), 2.15rem);
+    --description-size:clamp(1.4rem, calc(1.3rem + .7vw), 1.815rem);
+    margin-bottom: 1rem;
+    /* background-color: --transparentColor(var(--color-neutral-400),.45); */
+    background-color: color-mix(in srgb, var(--color-brand-100) 33%,var(--color-neutral-200));
+    padding: 1.7rem;
+    border-radius: 1rem;
+      .label {
+        color:var(--color-neutral-1000);
+        font-size: var(--label-size);
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: .65rem;
+      }
+      .description {
+        color:var(--color-neutral-800);
+        font-size: var(--description-size);
+        font-family: var(--font-body);
+        text-wrap: balance;
+      }
+  }
+  .menu-item[data-variant="mega-item"]{
+    --label-size:clamp(1.55rem, calc(1.35rem + 1.1vw), 1.72rem);
+    .label {
+      color:var(--color-neutral-700);
+      font-size: var(--label-size);
+      text-transform: uppercase;
     }
   }
-  @media (width > 1049px) {
-    .menu-item {
-      --description-size: clamp(1.2rem, calc(0.15rem + 1vw), 1.65rem);
-    }
-    .menu-item[data-variant="main"] {
-      --label-size: clamp(1.62rem, calc(0.67rem + 0.9vw), 2.1rem);
-    }
-    .menu-item[data-variant="mega"] {
-      --label-size: clamp(1.55rem, calc(0.29rem + 1.2vw), 2.15rem);
-      --gap: 1.5rem;
-      --spacing: 1rem;
-    }
-    .menu-item[data-variant="mega-item"] {
-      --label-size: clamp(1.25rem, calc(0.63rem + 0.6vw), 1.55rem);
-    }
-    .menu-item[data-variant="dropdown"] {
-      --label-size: clamp(1.85rem, calc(1.6vw + 0.78rem), 2.1rem);
-    }
+
+  .menu-item[data-variant="dropdown"]{
+       --label-size:clamp(1.75rem, calc(1.35rem + 1.2vw), 1.95rem);
+    --description-size:clamp(1.4rem, calc(1.3rem + .7vw), 1.515rem);
+    background-color: color-mix(in srgb, var(--color-brand-100) 33%,var(--color-neutral-200));
+    width: 100%;
+    border-radius: 0.75rem;
+    padding: 1.7rem;
+       .label {
+        color:var(--color-neutral-1000);
+        font-size: var(--label-size);
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: .65rem;
+      }
+      .description {
+        color:var(--color-neutral-800);
+        font-size: var(--description-size);
+        font-family: var(--font-body);
+        text-wrap: balance;
+      }
   }
+  @media (width >= 1100px){  
+    .menu-item[data-variant="main"]{
+      border-bottom: 0;
+      width: auto;
+    }
+
+    .menu-item[data-variant="main"],
+    .menu-item[data-variant="main-toggle"]{
+      padding: 1rem 0rem;
+      font-size: 2rem;
+    }
+  } 
 </style>

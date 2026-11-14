@@ -1,0 +1,5 @@
+@layer animations {
+    :root {
+        --easing: .25s ease-in-out;
+    }
+}

@@ -1,0 +1,6 @@
+@layer mixins {
+   @mixin --size (--width <length-percentage>:2px,--height <length-percentage>:var(--width)){
+    height: var(--height);
+    width: var(--width);
+   }
+}

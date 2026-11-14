@@ -11,7 +11,7 @@
       "@components/*":["./src/components/*"],
       "@common/*":["./src/components/common/*"],
       "@shared/*":["./src/components/shared/*"],
-      "@views/*":["./src/components/views"],
+      "@views/*":["./src/components/views/*"],
       "@data/*":["./src/data/*"],
       "@static/*":["./src/data/static/*"],
       "@lib/*":["./src/lib/*"],
@@ -20,7 +20,8 @@
       "@hooks/*":["./src/lib/hooks/*"],
       "@css/*":["./src/styles/*"],
       "@ts/*":["./src/types/*"],
-      "@src/*":["./src/*"]
+      "@src/*":["./src/*"],
+      "@img/*":["./src/assets/images/*"]
     }
   }
 }

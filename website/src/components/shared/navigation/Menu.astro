@@ -62,29 +62,31 @@ const { menu, callToAction } = Astro.props;
 
 <style>
   .menu {
-    align-items: flex-start;
+    /* --gap:2rem; */
+    --padding:3rem 1rem;
+    align-items: start;
     display: flex;
-    flex-flow: column;
-    height: 100%;
-    gap: 17px 0;
+    justify-content: flex-start;
+    flex-flow:column;
     overflow-y: scroll;
-    padding: 2rem;
-    scrollbar-width: none;
-    width: 100%;
+    height: 100%;
+    padding: var(--padding);
+    /* background: gray; */
+    scrollbar-width: 0px;
   }
-  @media (width > 600px) {
-    .menu {
-      padding: 2rem 3rem;
-    }
+
+  .menu::-webkit-scrollbar {
+    width: 0;
   }
-  @media (width > 1049px) {
+
+
+  @media (width >= 1100px){ 
     .menu {
       align-items: center;
-      flex-flow: row;
-      gap: 0 10px;
       justify-content: flex-end;
-      padding: 0;
-      overflow-y: visible;
+      flex-flow:row nowrap;
+      overflow: visible;
+      gap:0 .75rem;
     }
   }
 </style>
