@@ -35,3 +35,23 @@ export type CallToAction = {
     label:string;
     uri:string;
 }
+
+
+export interface I_NavigationController {
+    isOpen:boolean;
+    isScrolled:boolean;
+    activeMenu:string|null;
+    closeTimer:number|null;
+    init():void;
+    toggle():void;
+    close():void;
+    openMenu(id:string):void;
+    closeMenu(id:string):void;
+    toggleMenu(id:string):void;
+    isMenuOpen(id:string):boolean;
+    resetMenu():void;
+    onMenuEnter(id: string): void;
+    onMenuLeave(id: string): void;
+    cancelClose():void;
+    hoverSupported():boolean;
+}

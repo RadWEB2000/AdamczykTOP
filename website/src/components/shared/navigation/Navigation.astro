@@ -8,17 +8,10 @@ const { brand, menu, callToAction } = navigation;
 <div
 x-data
 class="navigation"
-:data-expanded="$store.navigation.open"
-:data-scrolled="$store.navigation.scrolled"
+:data-expanded="$store.navigation.isOpen"
+:data-scrolled="$store.navigation.isScrolled"
 transition:persist="main-navigation"
 >
-<!-- <div
-x-data
-class="navigation"
-:data-expanded="true"
-:data-scrolled="$store.navigation.scrolled"
-transition:persist="main-navigation"
-> -->
   <div x-data class="container" :data-expanded="true">
     <nav class="inner">
       <div class="brand">
@@ -41,140 +34,130 @@ transition:persist="main-navigation"
 </div>
 <style>
   .navigation {
-    --cta-visibility:hidden;
-    /* --container-width:min(1900px,92vw); */
+    --container-cols:minmax(0,1fr) 15rem;
     --container-width:100%;
-    --inner-columns:minmax(0,1fr) 10rem;
-    --inner-header-height:7.77rem;
-    /* --inner-rows:5rem 0; */
+    --cta-visibility:none;
+    --inner-bg:var(--color-neutral-200);
+    --inner-cols:minmax(0,1fr) 10rem;
+    --inner-height:7.5rem;
+    --inner-rows:var(--inner-height) 0px;
+    --nav-bg:var(--inner-bg);
+    --overflow:hidden;
+    --radius:2rem;
+    --settings-visibility:flex;
     --spacing:1.75rem;
-    background-color:var(--color-neutral-200);
+    --top:0;
+    background-color:var(--nav-bg);
+    left: 0;
     position: fixed;
-    top: 0;
-left: 0;
+    top: var(--top);
     transition: var(--easing) background-color;
     width: 100%;
-
     &[data-expanded=true]{
-      background-color: color-mix(in srgb, var(--color-neutral-100) 50%,var(--color-neutral-300));
-      .inner {
-        grid-template-rows:var(--inner-header-height) calc(100vh - var(--inner-header-height));
-      }
+      --nav-bg:color-mix(in srgb, var(--color-neutral-100) 47%,var(--color-neutral-300));
+      --inner-rows:var(--inner-height) calc(100dvh - var(--inner-height));
     }
   }
   .container {
-    /* background: orange; */
     margin:0 auto;
     width: var(--container-width);
   }
   .cta {
     align-items: center;
+    display: var(--cta-visibility);
     grid-column: 2;
     grid-row: 1;
-    justify-content: flex-end;
     height: 100%;
+    justify-content: flex-end;
+    min-block-size: 0;
+    min-inline-size: 0;
     width: 100%;
-    display: none;
-      min-inline-size: 0;
-  min-block-size: 0;
   }
   .inner {
     display: grid;
-    grid-template-columns: var(--inner-columns);
-    grid-template-rows: var(--inner-header-height) 0;
+    grid-template-columns: var(--inner-cols);
+    grid-template-rows:var(--inner-rows);
+    overflow-y:var(--overflow);
     transition:var(--easing) grid-template-rows;
     width: 100%;
-    overflow-y: hidden;
   }
   .brand,
   .settings {
     align-items: center;
-    display: flex;
     grid-row: 1;
   }
 
   .brand {
-    justify-content: flex-start;
-    /* background: white; */
+    display: flex;
     grid-column: 1;
+    justify-content: flex-start;
     padding-left: var(--spacing);
   }
   .settings {
-    /* background: red; */
-    justify-content: flex-end;
+    display: var(--settings-visibility);
     grid-column: 2;
+    justify-content: flex-end;
     padding-right: var(--spacing);
   }
   .menu {
-    /* background: aqua; */
-    height: 100%;
     grid-column: 1/-1;
-      min-block-size: 0;
-  min-inline-size: 0;
     grid-row: 2;
-    overflow: hidden;
+    height: 100%;
+    min-block-size: 0;
+    min-inline-size: 0;
+    overflow: var(--overflow);
   }
-
   @media (width >= 1100px){
     .navigation {
-      --inner-header-height:9rem;
-      --inner-columns:20rem 1fr ;
       --container-width:min(1900px,99vw);
-      background-color: transparent;
-      top:1rem;
-          left: 50%;
-    transform: translateX(-50%);
+      --cta-visibility:flex;
+      --inner-columns:20rem 1fr ;
+      --inner-height:9rem;
+      --nav-bg:transparent;
+      --overflow:visible;
+      --settings-visibility:none;
+      --top:1rem;
+      left: 50%;
+      transform: translateX(-50%);
       &[data-expanded=true]{
-        background-color: transparent;
-        .inner {
-          grid-template-rows:var(--inner-header-height) 0;
-        }
+        --nav-bg:transparent;
+        --inner-rows:var(--inner-height) 0px;
       }
     }
     .cta {
-      display: flex;
       padding:0 calc(var(--spacing) / 3);
     }
     .container {
       display: grid;
       gap:0 1rem;
-      background-color: transparent;
-      grid-template-rows: var(--inner-header-height);
-      grid-template-columns: minmax(0,1fr) 15rem;
+      grid-template-columns: var(--container-cols);
+      grid-template-rows: var(--inner-height);
       position: relative;
-    }
-    .settings {
-      /* background: green; */
-      display: none;
     }
     .inner {
-      background: var(--color-neutral-200);
-      border-radius: 2rem;
+      background: var(--inner-bg);
+      border-radius:var(--radius);
       padding: 0rem 2rem;
-      grid-template-rows:var(--inner-header-height) 0;
       position: relative;
-      overflow: visible;
     }
     .menu {
-      overflow: visible;
-      padding-right: var(--spacing);
       grid-column: 2;
       grid-row: 1;
+      padding-right: var(--spacing);
     }
   }
-
   @media (width >= 1600px){
     .navigation {
-      --inner-header-height:7.5rem;
-      --inner-columns:40rem 1fr ;
+      --inner-height:7.5rem;
+      --inner-cols:40rem 1fr;
+      --container-cols:minmax(0,1fr) 25rem;
       --container-width:min(1900px,95vw);
-      --spacing:1.75rem;
     }
-    .brand {
-      /* background: orangered; */
+  }
+  @media (prefers-reduced-motion: reduce){
+    .navigation,
+    .inner {
+      transition: none;
     }
-      .container {
-      grid-template-columns: minmax(0,1fr) 25rem;
-    }
-    }
+  }
 </style>
