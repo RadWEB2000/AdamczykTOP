@@ -12,20 +12,19 @@ interface Props extends Omit<NavigationMenuLink, "order"> {
 const { groups, ...link } = Astro.props;
 const panelId = `mega-${crypto.randomUUID()}`;
 const id = JSON.stringify(panelId);
-const hoverSupported =
-  "window.matchMedia('(hover: hover) and (pointer: fine)').matches";
 ---
 
 <div
+  @mouseenter={`$store.navigation.onMenuEnter(${id})`}
+  @mouseleave={`$store.navigation.onMenuLeave(${id})`}
   class="mega"
-  @mouseenter={`if (${hoverSupported}) openMenu(${id})`}
-  @mouseleave={`if (${hoverSupported}) closeMenu(${id})`}
 >
   <Toggle panelId={panelId} {...link} />
   <div
+    :data-expanded={`$store.navigation.isMenuOpen(${id})`}
+    :inert={`!$store.navigation.isMenuOpen(${id})`}
     class="panel"
-    :data-expanded={`activeMenu === ${id}`}
-    :inert={`activeMenu !== ${id}`}
+    id={panelId}
   >
     <div class="grid">
       {
@@ -48,73 +47,96 @@ const hoverSupported =
 
 <style>
   .mega {
-    /* background: salmon; */
-    width: 100%;
-    border-bottom: 1px solid --transparentColor(var(--color-neutral-900),.25);
-    /* position: relative; */
-  }
-  .panel {
-    display: grid;
-    overflow: hidden;
-    grid-template-rows:0fr;
-    transition: var(--easing) grid-template-rows;
-    &[data-expanded=true]{
-     grid-template-rows:1fr;
-      .grid {
-        padding:.5rem .25rem 3.5rem .25rem;
+    --border:1px solid --transparentColor(var(--color-neutral-900),.25);
+    --grid-cols:repeat(1,minmax(0,1fr));
+    --grid-gap:2.35rem 0;
+    --grid-pad:0 .25rem;
+    --links-gap:1.25rem 0;
+    --links-pad:.25rem 1.95rem;
+    --opacity:1;
+    --overflow:hidden;
+    --panel-bg:transparent;
+    --panel-display:grid;
+    --panel-position:static;
+    --panel-rows:0fr;
+    --radius:0;
+    --translate:0px;
+    --width:100%;
+    border-bottom:var(--border);
+    width: var(--width);
+    & > .panel {
+      background-color: var(--panel-bg);
+      border-radius: var(--radius);
+      display: var(--panel-display);
+      overflow: var(--overflow);
+      grid-template-rows:var(--panel-rows);
+      opacity: var(--opacity);
+      position:var(--panel-position);
+      transform: translateY(var(--translate));
+      transition: var(--easing) grid-template-rows, var(--easing) opacity, var(--easing) transform;
+      &[data-expanded=true]{
+        --panel-rows:1fr;
+        --grid-pad:.5rem .25rem 3.5rem .25rem;
+      }
+      & > .grid {
+        display: grid;
+        gap:var(--grid-gap);
+        grid-template-columns: var(--grid-cols);
+        min-height: 0;
+        padding:var(--grid-pad);
+        transition: var(--easing) padding;
+        & > .group {
+          & > .links {
+            align-items: flex-start;
+            display: flex;
+            flex-flow: column;
+            padding:var(--links-pad);
+            gap:var(--links-gap);
+            justify-content: flex-start;
+          }
+        }
       }
     }
   }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(1,1fr);
-    min-height: 0;
-    gap:2.35rem 0;
-     padding: 0 .25rem;
-    transition: var(--easing) padding;
-  }
-  .links {
-    align-items: flex-start;
-    display: flex;
-    flex-flow: column;
-    padding:.25rem 1.95rem;
-    gap:1.25rem 0;
-    justify-content: flex-start;
-  }
   @media (width >= 1100px){  
     .mega {
-      width: auto;
-      border-bottom: 0;
-      
-    }
-    .panel {
-      background-color: var(--color-neutral-200);
-      position: absolute;
-      border-radius: 0 0 1rem 1rem ;
-      display: block;
-      left: 0;
-      overflow: hidden;
-      opacity: 0;
-      transform-origin: top;
-      transform:translateY(-12px);
-      right: 0;
-      transition: var(--easing) height, var(--easing) opacity, var(--easing) transform;
-        &[data-expanded="true"]{
-          opacity: 1;transform:translateY(0);
-          .grid {
-            padding: 3rem;
-          }    
+      --border:0;
+      --grid-cols:repeat(2,minmax(0,1fr));
+      --grid-gap:1rem;
+      --grid-pad:3rem;
+      --links-gap:1.25rem 0;
+      --opacity:0;
+      --panel-bg:var(--color-neutral-200);
+      --panel-display:block;
+      --panel-position:absolute;
+      --panel-rows:1fr;
+      --radius:0 0 1rem 1rem;
+      --translate:-8px;
+      --width:auto;
+      & > .panel {
+        left: 0;
+        right: 0;
+        &[data-expanded=true]{
+          --grid-pad:3rem;
+          --opacity:1;
+          --translate:0px;
         }
-    }
-    .grid {
-      grid-template-columns: repeat(2,1fr);
-      padding: 3rem;
-      gap:1rem;
+        & > .grid {
+          transition:none;
+        }
+      }
+      
     }
  }
  @media (width >= 1600px){ 
-  .grid {
-      grid-template-columns: repeat(4,1fr);
+  .mega {
+      --grid-cols: repeat(4,minmax(0,1fr));
     }
+ }
+ @media (prefers-reduced-motion: reduce) {
+  .grid,
+  .panel {
+    transition: none;
+  }
  }
 </style>

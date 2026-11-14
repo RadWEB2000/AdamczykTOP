@@ -12,26 +12,20 @@ interface Props extends Omit<NavigationMenuLink, "order"> {
 const { items, ...link } = Astro.props;
 const panelId = `dropdown-${crypto.randomUUID()}`;
 const id = JSON.stringify(panelId);
-const hoverSupported =
-  "window.matchMedia('(hover: hover) and (pointer: fine)').matches";
 ---
 
 <div
+  @mouseenter={`$store.navigation.onMenuEnter(${id})`}
+  @mouseleave={`$store.navigation.onMenuLeave(${id})`}
   class="menu-dropdown"
-  @mouseenter={`if (${hoverSupported}) openMenu(${id})`}
-  @mouseleave={`if (${hoverSupported}) closeMenu(${id})`}
 >
   <Toggle panelId={panelId} {...link} />
   <div
+    :data-expanded={`$store.navigation.isMenuOpen(${id})`}
+    :inert={`!$store.navigation.isMenuOpen(${id})`}
     class="dropdown"
-    :data-expanded={`activeMenu === ${id}`}
-    :inert={`activeMenu !== ${id}`}
+    id={panelId}
   >
-  <!-- <div
-    class="dropdown"
-    :data-expanded={`true`}
-    :inert={`true`}
-  > -->
     <div class="items">
       {
         items.map((item) => {
@@ -44,62 +38,81 @@ const hoverSupported =
 
 <style>
   .menu-dropdown {
-    /* background: purple; */
-    width: 100%;
-    border-bottom: 1px solid --transparentColor(var(--color-neutral-900),.25);
-    /* position: relative; */
-  }
-
-  .dropdown {
-    display: grid;
-    overflow: hidden;
-    grid-template-rows:0fr;
-    transition: var(--easing) grid-template-rows;
-    /* display: none; */
-    &[data-expanded=true]{
-      grid-template-rows:1fr;
-      .items {
-        padding:.5rem .25rem 3.5rem .25rem;
+    --border:1px solid --transparentColor(var(--color-neutral-900),.25);
+    --dropdown-bg:transparent;
+    --dropdown-display:grid;
+    --dropdown-overflow:hidden;
+    --dropdown-position:static;
+    --dropdown-rows:0fr;
+    --dropdown-width:100%;
+    --gap:1.15rem 0;
+    --item-pad:0 .25rem;
+    --opacity:1;
+    --overflow:hidden;
+    --radius:0;
+    --translate:0;
+    --width:100%;
+    border-bottom:var(--border);
+    width: var(--width);
+    & > .dropdown {
+      background-color: var(--dropdown-bg);
+      border-radius: var(--radius);
+      display: var(--dropdown-display);
+      grid-template-rows:var(--dropdown-rows);
+      opacity: var(--opacity);
+      position: var(--dropdown-position);
+      transform: translateY(var(--translate));
+      transition: var(--easing) grid-template-rows, var(--easing) opacity, var(--easing) transform;
+      visibility: visible;
+      width: var(--dropdown-width);
+      &[data-expanded=true]{
+        --dropdown-rows:1fr;
+        --items-pad:.5rem .25rem 3.5rem .25rem;
+      }
+      & > .items {
+        align-items: start;
+        display: flex;
+        flex-flow:column;
+        gap:var(--gap);
+        justify-content: flex-start;
+        min-height: 0;
+        overflow: var(--overflow);
+        padding: var(--items-pad);
+        transition: var(--easing) padding;
       }
     }
   }
-  .items {
-    align-items: start;
-    display: flex;
-    min-height: 0px;
-    overflow: hidden;
-    gap:1.15rem 0;
-    justify-content: flex-start;
-    flex-flow:column;
-    padding: 0 .25rem;
-    transition: var(--easing) padding;
-  }
   @media (width >= 1100px){  
     .menu-dropdown {
-      border-bottom: 0;
-      width: auto;
-    }
-    .dropdown {
-      background-color: var(--color-neutral-200);
-      opacity: 0;
-      transform-origin: top;
-      transform:translateY(-12px);
-      position: absolute;
-      transition: var(--easing) height, var(--easing) opacity, var(--easing) transform;
-      border-radius:0 0 1rem 1rem;
-      overflow: visible;
-      display: block;
-      right: 0;
-      width: 275px;
-       &[data-expanded="true"]{
-          opacity: 1;transform:translateY(0);
-          .items {
-            padding: 2rem;
-          }    
+      --border:0;
+      --dropdown-bg:var(--color-neutral-200);
+      --dropdown-display:block;
+      --dropdown-overflow:visible;
+      --dropdown-position:absolute;
+      --dropdown-rows:1fr;
+      --dropdown-width:min(275px,100%);
+      --items-pad:2rem;
+      --opacity:0;
+      --radius:0 0 1rem 1rem;
+      --translate:-8px;
+      --width:auto;
+      & > .dropdown {
+        right: 0;
+        &[data-expanded=true]{
+          --items-pad:2rem;
+          --opacity:1;
+          --translate:0;
         }
+        & > .items {
+          transition: none;
+        }
+      }
     }
-    .items {
-padding: 2rem;
-    }
+ }
+ @media (prefers-reduced-motion: reduce){
+  .dropdown,
+  .items {
+    transition: none;
+  }
  }
 </style>

@@ -5,6 +5,7 @@ import {
   CallToAction as CTA,
   MenuMega as Mega,
 } from "@shared/navigation";
+
 import type { CallToAction, NavigaitonMenuItem } from "@ts/navigation.types";
 interface Props {
   menu: Array<NavigaitonMenuItem>;
@@ -16,34 +17,6 @@ const { menu, callToAction } = Astro.props;
 
 <menu
   class="menu"
-  x-data="{
-    activeMenu: null,
-    closeTimer: null,
-
-    openMenu(id) {
-      clearTimeout(this.closeTimer);
-      this.activeMenu = id;
-    },
-
-    closeMenu(id) {
-      clearTimeout(this.closeTimer);
-
-      this.closeTimer = setTimeout(() => {
-        if (this.activeMenu === id) {
-          this.activeMenu = null;
-        }
-      }, 150);
-    },
-
-    cancelClose() {
-      clearTimeout(this.closeTimer);
-    },
-
-    toggleMenu(id) {
-      clearTimeout(this.closeTimer);
-      this.activeMenu = this.activeMenu === id ? null : id;
-    }
-  }"
 >
   {
     menu.map((item) => {
@@ -62,31 +35,40 @@ const { menu, callToAction } = Astro.props;
 
 <style>
   .menu {
-    /* --gap:2rem; */
+    --align:start;
+    --direction:column;
+    --gap:0;
+    --justify:flex-start;
+    --overflow:scroll;
     --padding:3rem 1rem;
-    align-items: start;
+    align-items:var(--align);
     display: flex;
-    justify-content: flex-start;
-    flex-flow:column;
-    overflow-y: scroll;
+    gap:var(--gap);
+    justify-content: var(--justify);
+    flex-flow:var(--direction);
     height: 100%;
+    overflow-y: var(--overflow);
     padding: var(--padding);
-    /* background: gray; */
     scrollbar-width: 0px;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    & > :global(*){
+      flex-shrink: 0;
+    }
   }
-
-  .menu::-webkit-scrollbar {
-    width: 0;
-  }
-
-
   @media (width >= 1100px){ 
     .menu {
-      align-items: center;
-      justify-content: flex-end;
-      flex-flow:row nowrap;
-      overflow: visible;
-      gap:0 .75rem;
+      --align:center;
+      --direction:row nowrap;
+      --justify:flex-end;
+      --overflow:visible;
+      --gap:0 .75rem;
+    }
+  }
+  @media (width >= 1600px){ 
+    .menu {
+      --gap:0 1.25rem;
     }
   }
 </style>
